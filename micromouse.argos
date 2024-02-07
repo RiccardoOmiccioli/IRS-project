@@ -1,0 +1,673 @@
+<?xml version="1.0" ?>
+<argos-configuration>
+
+  <!-- ************************* -->
+  <!-- * General configuration * -->
+  <!-- ************************* -->
+  <framework>
+    <system threads="2" />
+    <experiment length="0" ticks_per_second="10" />
+  </framework>
+
+  <!-- *************** -->
+  <!-- * Controllers * -->
+  <!-- *************** -->
+  <controllers>
+
+    <lua_controller id="lua">
+      <actuators>
+        <differential_steering implementation="default" noise_level="0.0"/>
+      </actuators>
+      <sensors>
+      	<differential_steering implementation="default" noise_level="0.0" />
+        <footbot_light implementation="rot_z_only" show_rays="false" noise_level="0.0" />
+      </sensors>
+      <params script="micromouse.lua" />
+    </lua_controller>
+
+  </controllers>
+
+  <!-- *********************** -->
+  <!-- * Arena configuration * -->
+  <!-- *********************** -->
+  <arena size="8, 8, 1" center="0,0,0.5">
+
+    <!-- Perimeter wall -->
+    <box id="wn" size="8, 0.05, 0.2" movable="false">
+      <body position="0, 4, 0"  orientation="0,0,0" />
+    </box>
+    <box id="we" size="0.05, 8, 0.2" movable="false">
+      <body position="4, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="ws" size="8, 0.05, 0.2" movable="false">
+      <body position="0, -4, 0"  orientation="0,0,0" />
+    </box>
+    <box id="ww" size="0.05, 8, 0.2" movable="false">
+      <body position="-4, 0, 0"  orientation="0,0,0" />
+    </box>
+
+    <!-- Row walls -->
+    <box id="r11" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.75, 3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r12" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, 3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r13" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, 3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r14" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, 3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r21" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.25, 3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r22" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, 3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r23" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, 3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r24" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, 3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r25" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, 3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r31" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.75, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r32" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r33" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r34" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r35" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.75, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r36" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.25, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r37" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r38" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, 2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r41" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.75, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r42" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r43" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.75, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r44" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r45" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.75, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r46" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r47" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.75, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r48" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r49" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.75, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r410" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.75, 2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r51" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.75, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r52" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.25, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r53" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.75, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r54" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r55" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.75, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r56" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r57" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.75, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r58" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.25, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r59" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.25, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r510" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r511" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, 1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r61" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.75, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r62" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.75, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r63" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r64" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.75, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r65" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r66" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.75, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r67" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.75, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r68" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.75, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r69" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.75, 1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r71" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.75, 0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r72" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.75, 0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r73" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, 0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r74" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.25, 0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r75" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.25, 0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r76" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, 0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r77" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, 0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r81" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r82" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.75, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r83" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r84" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.75, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r85" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.75, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r86" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.75, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r87" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, 0, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r91" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r92" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.75, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r93" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.25, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r94" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r95" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.25, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r96" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.25, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r97" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r98" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.75, -0.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r101" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-1.75, -1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r102" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.75, -1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r103" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, -1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r104" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.75, -1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r105" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.75, -1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r106" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.75, -1, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r111" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.25, -1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r112" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.75, -1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r113" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, -1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r114" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.25, -1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r115" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, -1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r116" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, -1.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r121" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.25, -2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r122" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.25, -2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r123" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.25, -2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r124" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, -2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r125" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, -2, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r131" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.75, -2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r132" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.25, -2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r133" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, -2.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r141" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-3.25, -3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r142" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.75, -3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r143" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.25, -3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r144" size="0.5, 0.05, 0.2" movable="false">
+      <body position="1.25, -3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r145" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, -3, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r151" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-2.75, -3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r152" size="0.5, 0.05, 0.2" movable="false">
+      <body position="-0.25, -3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r153" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.25, -3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r154" size="0.5, 0.05, 0.2" movable="false">
+      <body position="0.75, -3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r155" size="0.5, 0.05, 0.2" movable="false">
+      <body position="2.75, -3.5, 0"  orientation="0,0,0" />
+    </box>
+    <box id="r156" size="0.5, 0.05, 0.2" movable="false">
+      <body position="3.25, -3.5, 0"  orientation="0,0,0" />
+    </box>
+
+    <!-- Column walls -->
+    <box id="c11" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3.5, 2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c12" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3.5, -0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c13" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3.5, -0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c14" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3.5, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c15" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3.5, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c16" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3.5, -2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c17" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3.5, -3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c21" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c22" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c23" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3, 0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c24" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c25" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3, -0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c26" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-3, -0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c31" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2.5, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c32" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2.5, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c33" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2.5, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c34" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2.5, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c35" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2.5, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c36" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2.5, -3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c41" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2, 0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c42" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c43" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c44" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-2, -3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c51" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1.5, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c52" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1.5, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c53" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1.5, -0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c54" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1.5, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c55" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1.5, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c56" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1.5, -2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c57" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1.5, -3.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c61" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c62" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1, -0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c63" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c64" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1, -1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c65" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c66" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-1, -3.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c71" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-0.5, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c72" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-0.5, 0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c73" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-0.5, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c74" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-0.5, -0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c75" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-0.5, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c76" size="0.05, 0.5, 0.2" movable="false">
+      <body position="-0.5, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c81" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c82" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c83" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0, 1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c84" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0, 1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c85" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0, 0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c86" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0, -2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c91" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0.5, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c92" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0.5, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c93" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0.5, 1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c94" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0.5, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c95" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0.5, -1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c96" size="0.05, 0.5, 0.2" movable="false">
+      <body position="0.5, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c101" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c102" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c103" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c104" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c111" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c112" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c113" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, 1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c114" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, 0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c115" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, -0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c116" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c117" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, -1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c118" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c119" size="0.05, 0.5, 0.2" movable="false">
+      <body position="1.5, -3.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c121" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c122" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c123" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, 1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c124" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c125" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, -0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c126" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, -1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c127" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, -2.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c128" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2, -3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c131" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2.5, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c132" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2.5, 1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c133" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2.5, 0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c134" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2.5, 0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c135" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2.5, -0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c136" size="0.05, 0.5, 0.2" movable="false">
+      <body position="2.5, -2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c141" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c142" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3, 2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c143" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3, 1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c144" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3, 1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c145" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3, 0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c146" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3, -0.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c147" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3, -2.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c151" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3.5, 3.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c152" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3.5, -0.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c153" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3.5, -1.25, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c154" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3.5, -1.75, 0"  orientation="0,0,0" />
+    </box>
+    <box id="c155" size="0.05, 0.5, 0.2" movable="false">
+      <body position="3.5, -2.25, 0"  orientation="0,0,0" />
+    </box>
+
+    <foot-bot id="fb">
+      <controller config="lua" />
+      <body position="-3.75, 3.75, 0" orientation="0,0,0" />
+    </foot-bot>
+
+  </arena>
+
+  <!-- ******************* -->
+  <!-- * Physics engines * -->
+  <!-- ******************* -->
+  <physics_engines>
+    <dynamics2d id="dyn2d" />
+  </physics_engines>
+
+  <!-- ********* -->
+  <!-- * Media * -->
+  <!-- ********* -->
+  <media>
+    <range_and_bearing id="rab" index="grid" grid_size="1,1,1" />
+    <led id="leds" />
+  </media>
+
+  <!-- ****************** -->
+  <!-- * Visualization * -->
+  <!-- ****************** -->
+  <visualization>
+
+    <!-- ************************************************************************ -->
+    <!-- * To activate the Lua editor, just use the 'lua_editor' flag attribute * -->
+    <!-- ************************************************************************ -->
+    <qt-opengl lua_editor="false">
+      <camera>
+        <placements>
+          <placement index="0" position=" 0, -6, 8" look_at=" 0, 0, 0" lens_focal_length="35" />
+          <placement index="1" position=" 0, -0.1, 8" look_at=" 0, 0, 0" lens_focal_length="25" />
+        </placements>
+      </camera>
+    </qt-opengl>
+
+  </visualization>
+
+</argos-configuration>
