@@ -5,8 +5,8 @@
   <!-- * General configuration * -->
   <!-- ************************* -->
   <framework>
-    <system threads="2" />
-    <experiment length="0" ticks_per_second="10" />
+    <system threads="4" />
+    <experiment length="600" ticks_per_second="100" />
   </framework>
 
   <!-- *************** -->
@@ -20,7 +20,7 @@
       </actuators>
       <sensors>
       	<differential_steering implementation="default" noise_level="0.0" />
-        <footbot_light implementation="rot_z_only" show_rays="false" noise_level="0.0" />
+        <footbot_proximity implementation="default" show_rays="true" noise_level="0.0" />
       </sensors>
       <params script="micromouse.lua" />
     </lua_controller>
@@ -31,6 +31,7 @@
   <!-- * Arena configuration * -->
   <!-- *********************** -->
   <arena size="8, 8, 1" center="0,0,0.5">
+    <floor id="f" source="image" path="maze_background.png"/>
 
     <!-- Perimeter wall -->
     <box id="wn" size="8, 0.05, 0.2" movable="false">
@@ -664,6 +665,7 @@
         <placements>
           <placement index="0" position=" 0, -6, 8" look_at=" 0, 0, 0" lens_focal_length="35" />
           <placement index="1" position=" 0, -0.1, 8" look_at=" 0, 0, 0" lens_focal_length="25" />
+          <placement index="2" position="-3.75, 3.74, 4" look_at=" -3.75, 3.75, 0" lens_focal_length="35" />
         </placements>
       </camera>
     </qt-opengl>
