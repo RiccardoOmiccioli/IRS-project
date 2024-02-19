@@ -1,6 +1,8 @@
 -- Global variables
 n_steps = 0
 
+stopwatch = require "stopwatch"
+
 -- This function is executed every time you press the 'execute' button
 function init()
 	require "move"
@@ -45,6 +47,8 @@ function init()
 	move(BASIC_MOVE.FORWARD)
 	move(COMPLEX_MOVE.GO_LEFT)
 	move(COMPLEX_MOVE.GO_LEFT)
+
+	stopwatch.init()
 end
 
 
@@ -52,6 +56,10 @@ end
 function step()
 	move()
 	-- if move() then print("Continue") else print("Done moving") end
+
+	-- Increment stopwatch counter and print values
+	stopwatch.increment()
+	stopwatch.printDebug()
 end
 
 
