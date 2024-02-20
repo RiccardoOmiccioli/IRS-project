@@ -1,6 +1,7 @@
 -- Global variables
 n_steps = 0
 
+floor_detector = require "floor_detector"
 stopwatch = require "stopwatch"
 
 -- This function is executed every time you press the 'execute' button
@@ -51,8 +52,17 @@ end
 
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
-	move()
-	-- if move() then print("Continue") else print("Done moving") end
+
+	-- check arrival area
+	check = floor_detector.check(robot)
+
+	if check then
+		log("Arrival area")
+	else
+		log("Move")
+		move()
+		-- if move() then print("Continue") else print("Done moving") end
+	end
 
 	-- Increment stopwatch counter and print values
 	stopwatch.increment()
