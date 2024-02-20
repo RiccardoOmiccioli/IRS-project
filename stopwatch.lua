@@ -15,9 +15,9 @@ function stopwatch.getSteps()
      return steps
 end
 
--- This function converts simulation steps in seconds and return the value
+-- This function converts simulation steps in seconds and return the value formatted
 function stopwatch.getSeconds()
-     return steps / STEPS_TO_SEC
+     return string.format("%.3f", (steps / STEPS_TO_SEC))
 end
 
 function stopwatch.printDebug()
