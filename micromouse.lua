@@ -53,20 +53,32 @@ end
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
 
-	-- check arrival area
+	-- check area
 	check = floor_detector.check(robot)
 
-	if check then
-		log("Arrival area")
+	if check == floor_type.FINISH then
+		log("FINISH ZONE")
+		log("Arrival time: " .. stopwatch.getSeconds() .. " sec")
 	else
-		log("Move")
+		log("MOVING")
 		move()
+		
 		-- if move() then print("Continue") else print("Done moving") end
+
+		-- Check floor and start stopwatch
+		if check == floor_type.START then
+			log("START ZONE")
+			stopwatch.init()
+		else
+			stopwatch.increment()
+		end
+
+		log("Time: " .. stopwatch.getSeconds())
+
+		--stopwatch.printDebug() -- debug
 	end
 
-	-- Increment stopwatch counter and print values
-	stopwatch.increment()
-	stopwatch.printDebug()
+
 end
 
 
