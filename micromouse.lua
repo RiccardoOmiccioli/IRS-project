@@ -1,3 +1,6 @@
+require "move"
+require "distance"
+
 -- Global variables
 n_steps = 0
 
@@ -6,45 +9,43 @@ stopwatch = require "stopwatch"
 
 -- This function is executed every time you press the 'execute' button
 function init()
-	require "move"
 
 	n_steps = 0
 
-	robot.distance_scanner.enable()
-	robot.distance_scanner.set_angle(math.pi / 2)
+	start_distance_scanner()
 
 	robot.leds.set_single_color(3, "red")
 	robot.leds.set_single_color(4, "red")
 	robot.leds.set_single_color(9, "green")
 	robot.leds.set_single_color(10, "green")
 
-	move(BASIC_MOVE.FORWARD)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(BASIC_MOVE.FORWARD)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(BASIC_MOVE.FORWARD, 5)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(BASIC_MOVE.FORWARD, 5)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(BASIC_MOVE.FORWARD, 4)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(BASIC_MOVE.FORWARD)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(BASIC_MOVE.FORWARD)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(BASIC_MOVE.FORWARD)
-	move(COMPLEX_MOVE.GO_RIGHT)
-	move(BASIC_MOVE.FORWARD, 3)
-	move(COMPLEX_MOVE.GO_LEFT)
-	move(COMPLEX_MOVE.GO_LEFT)
+	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 5)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 5)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 4)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
+	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 3)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
 
 	stopwatch.init()
 end
@@ -61,10 +62,6 @@ function step()
 		log("Arrival time: " .. stopwatch.getSeconds() .. " sec")
 	else
 		log("MOVING")
-		move()
-		
-		-- if move() then print("Continue") else print("Done moving") end
-
 		-- Check floor and start stopwatch
 		if check == floor_type.START then
 			log("START ZONE")
@@ -72,13 +69,14 @@ function step()
 		else
 			stopwatch.increment()
 		end
-
-		log("Time: " .. stopwatch.getSeconds())
-
+		-- log("Time: " .. stopwatch.getSeconds())
 		--stopwatch.printDebug() -- debug
 	end
 
+	get_front_distance()
 
+	move()
+	-- if move() then print("Continue") else print("Done moving") end
 end
 
 
