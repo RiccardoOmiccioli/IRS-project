@@ -7,7 +7,7 @@ floor_color = {WHITE = 1 , BLACK = 0, GREY = 0.5} -- maze floor color
 floor_type = {START = floor_color.GREY, PATH = floor_color.WHITE, FINISH = floor_color.BLACK} -- floor types
 
 -- check of colour floor, returns the floor type
-function floor_detector.check(robot)
+function floor_detector.check()
     ground = robot.motor_ground
 
     -- Check if part of robot is on spot

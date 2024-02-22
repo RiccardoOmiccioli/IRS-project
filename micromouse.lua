@@ -6,6 +6,7 @@ n_steps = 0
 
 floor_detector = require "floor_detector"
 stopwatch = require "stopwatch"
+race_management = require "race_management"
 
 -- This function is executed every time you press the 'execute' button
 function init()
@@ -54,24 +55,7 @@ end
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
 
-	-- check area
-	check = floor_detector.check(robot)
-
-	if check == floor_type.FINISH then
-		log("FINISH ZONE")
-		log("Arrival time: " .. stopwatch.getSeconds() .. " sec")
-	else
-		log("MOVING")
-		-- Check floor and start stopwatch
-		if check == floor_type.START then
-			log("START ZONE")
-			stopwatch.init()
-		else
-			stopwatch.increment()
-		end
-		-- log("Time: " .. stopwatch.getSeconds())
-		--stopwatch.printDebug() -- debug
-	end
+	race_management.run()
 
 	get_front_distance()
 
