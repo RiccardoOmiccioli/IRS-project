@@ -58,7 +58,7 @@ function step()
 
 	maze_data.new()
 	race_management.run()
-	-- maze_data.update_parent(10,13,{1,1})
+	maze_data.update_parent(10,13,"1|1")
 	get_front_distance()
 
 	move()
