@@ -7,12 +7,21 @@ MAX_DECELERATION = 2 -- cm/s^2
 TURN_LINEAR_LENGTH = math.pi * robot.wheels.axis_length / 4 -- linear distance that the wheels needs to travel to turn 90 degrees
 TURN_RADIUS =  robot.wheels.axis_length / 2 -- radius of the circle that the wheels travels when turning
 
-is_moving = false
+is_moving = false -- used to check if a movement is in progress
+is_stopped = true -- used to check if the robot is really stopped based on distance sensors if available
+
 distance_traveled = 0
 distance_to_travel = 0
 current_velocity = 0
 current_move = nil
-move_array = {}
+
+move_array = {} -- array of movements to be done
+
+-- Checks if the bot stopped based on distance sensors if available
+function check_if_stopped()
+    -- TODO
+end
+
 
 -- Starts a new straight movement or continues movement if already going straight
 function straight()
@@ -20,6 +29,7 @@ function straight()
     if not is_moving then
         distance_traveled = 0
         is_moving = true
+        is_stopped = false
     else
         distance_traveled = distance_traveled + math.abs(robot.wheels.distance_left)
         if distance_traveled >= distance_to_travel then
@@ -56,6 +66,7 @@ function turn()
         distance_traveled = 0
         current_velocity = MAX_CONSTANT_VELOCITY
         is_moving = true
+        is_stopped = false
     else
         distance_traveled = distance_traveled + math.abs(robot.wheels.distance_left)
         if distance_traveled >= distance_to_travel then
@@ -106,9 +117,12 @@ function move(movement, direction, delta, has_priority)
         if is_moving then
             current_move.movement()
         else
+            -- check_if_stopped
+            -- check if_calibrate
             if #move_array > 0 then
-                current_move = table.remove(move_array, 1)
-                current_move.movement()
+
+                    current_move = table.remove(move_array, 1)
+                    current_move.movement()
             end
         end
     end

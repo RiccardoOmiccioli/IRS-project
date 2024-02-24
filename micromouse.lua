@@ -1,5 +1,6 @@
 require "move"
 require "distance"
+require "calibrate"
 
 -- Global variables
 n_steps = 0
@@ -11,6 +12,8 @@ maze_data = require "maze_data"
 
 -- This function is executed every time you press the 'execute' button
 function init()
+	require "maze"
+	print(maze[1][1])
 
 	n_steps = 0
 
@@ -58,11 +61,21 @@ function step()
 
 	maze_data.new()
 	race_management.run()
-	maze_data.update_parent(10,13,"1|1")
-	get_front_distance()
+	maze_data.update_parent(10, 13, "1|1")
 
-	move()
 	-- if move() then print("Continue") else print("Done moving") end
+	if not move() then
+		print("Done moving")
+	end
+
+	-- ******************************************************************
+	-- check floor and start/stop time
+	-- if move() then print("Continue and check obstacle/calibrate") else
+		-- check walls
+		-- decide next move
+	-- end
+	-- ******************************************************************
+
 end
 
 
