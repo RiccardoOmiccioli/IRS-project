@@ -60,10 +60,11 @@ function step()
 	race_management.run()
 	maze_data.update_parent(10, 13, "1|1")
 
+	move()
 	-- if move() then print("Continue") else print("Done moving") end
-	if not move() then
-		print("Done moving")
-	end
+	-- if not move() then
+	-- 	print("Done moving")
+	-- end
 
 	-- ******************************************************************
 	-- check floor and start/stop time
