@@ -12,9 +12,6 @@ maze_data = require "maze_data"
 
 -- This function is executed every time you press the 'execute' button
 function init()
-	require "maze"
-	print(maze[1][1])
-
 	n_steps = 0
 
 	start_distance_scanner()
