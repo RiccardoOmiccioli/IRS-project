@@ -1,11 +1,26 @@
 require "move"
 require "distance"
+require "proximity"
 
 SENSOR_DISTANCE_FROM_WALL = 14
 POSITION_ERROR_THRESHOLD = 1
 
 -- This function checks if a calibration is needed based on the distance from the front wall if available and exceeds the threshold
-function is_calibration_needed()
+function is_slow_calibration_needed()
+    angle, value = get_closest_object()
+    -- print(tostring(angle) .. " " .. tostring(value))
+end
+
+function slow_calibrate()
+    angle, value = get_closest_object()
+    if angle > 0 then
+        print("Calibrating: " .. angle)
+    else
+        print("Calibrating: " .. value)
+    end
+end
+
+function is_fast_calibration_needed()
     front_distance = get_front_distance()
     if front_distance > 0 then
         if front_distance < SENSOR_DISTANCE_FROM_WALL - POSITION_ERROR_THRESHOLD or front_distance > SENSOR_DISTANCE_FROM_WALL + POSITION_ERROR_THRESHOLD then

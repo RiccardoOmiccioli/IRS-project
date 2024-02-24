@@ -2,8 +2,8 @@ MAZE_UNIT_LENGHT = 50 -- cm length of a maze unit
 MAX_CONSTANT_VELOCITY = 100 -- cm/s to be used on movements that do not require acceleration or deceleration
 MIN_LINEAR_VELOCITY = 100 -- cm/s minimum linear velocity to be used on movements that require acceleration or deceleration
 MAX_LINEAR_VELOCITY = 1000 -- cm/s maximum linear velocity to be used on movements that require acceleration or deceleration
-MAX_ACCELERATION = 2 -- cm/s^2
-MAX_DECELERATION = 2 -- cm/s^2
+MAX_ACCELERATION = 4 -- cm/s^2
+MAX_DECELERATION = 4 -- cm/s^2
 TURN_LINEAR_LENGTH = math.pi * robot.wheels.axis_length / 4 -- linear distance that the wheels needs to travel to turn 90 degrees
 TURN_RADIUS =  robot.wheels.axis_length / 2 -- radius of the circle that the wheels travels when turning
 
@@ -112,10 +112,18 @@ function move(movement, direction, delta, has_priority)
         end
     else
         if is_moving then
-            current_move.movement()
+            if is_slow_calibration_needed() then -- pause the current movement
+                is_moving = false
+                robot.wheels.set_velocity(0, 0)
+                table.insert(move_array, 1, {movement = current_move.movement, direction = current_move.direction, delta = distance_to_travel - distance_traveled})
+            else
+                current_move.movement()
+            end
         else
             if is_stopped() then
-                if is_calibration_needed() then
+                if is_slow_calibration_needed() then
+                    -- slow_calibrate()
+                elseif is_fast_calibration_needed() then
                     fast_calibrate()
                 end
                 if #move_array > 0 then
