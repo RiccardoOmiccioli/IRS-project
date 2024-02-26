@@ -5,10 +5,8 @@ require "calibrate"
 -- Global variables
 n_steps = 0
 
-floor_detector = require "floor_detector"
-stopwatch = require "stopwatch"
+depth_first = require "depth_first"
 race_management = require "race_management"
-maze_data = require "maze_data"
 
 -- This function is executed every time you press the 'execute' button
 function init()
@@ -56,9 +54,8 @@ end
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
 
-	maze_data.new()
+	depth_first.start_algorithm()
 	race_management.run()
-	maze_data.update_parent(10, 13, "1|1")
 
 	move()
 	-- if move() then print("Continue") else print("Done moving") end
