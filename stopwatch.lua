@@ -11,18 +11,18 @@ function stopwatch.increment()
      steps = steps + 1
 end
 
-function stopwatch.getSteps()
+function stopwatch.get_steps()
      return steps
 end
 
 -- This function converts simulation steps in seconds and return the value formatted
-function stopwatch.getSeconds()
+function stopwatch.get_seconds()
      return string.format("%.3f", (steps / STEPS_TO_SEC))
 end
 
-function stopwatch.printDebug()
-	log("STEPS: " .. stopwatch.getSteps())
-     log("SECONDS: " .. stopwatch.getSeconds())
+function stopwatch.print_debug()
+	log("STEPS: " .. stopwatch.get_steps())
+     log("SECONDS: " .. stopwatch.get_seconds() .. "sec")
      log("-----------------------------------")
 end
 

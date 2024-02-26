@@ -3,13 +3,20 @@ stopwatch = require "stopwatch"
 
 local race_management = {}
 
+PENALTY_SEC = 3 -- seconds of penalty
+penalty_count = 0
+
 function race_management.run()
     -- Check floor colour
 	check = floor_detector.check()
 
 	if check == floor_type.FINISH then
 		log("FINISH ZONE")
-		log("Arrival time: " .. stopwatch.getSeconds() .. " sec")
+		if penalty_count == 0 then -- Check penalty count
+			log("Arrival time: " .. stopwatch.get_seconds() .. " sec")
+		else
+			log("Arrival time: " .. stopwatch.get_seconds() .. " sec" .. " + " .. penalty_count * PENALTY_SEC .. " sec penalty" )
+		end
 	else
 		log("MOVING")
 		-- Check floor and start stopwatch
@@ -19,9 +26,19 @@ function race_management.run()
 		else
 			stopwatch.increment()
 		end
-		-- log("Time: " .. stopwatch.getSeconds())
-		--stopwatch.printDebug() -- debug
+		-- log("Time: " .. stopwatch.get_seconds())
+		-- stopwatch.print_debug() 
 	end
+end
+
+-- Increment penalty count
+function race_management.add_penalty()
+	penalty_count = penalty_count + 1
+end
+
+-- Reset penalty count
+function race_management.reset_penalty()
+	penalty_count = 0
 end
 
 return race_management
