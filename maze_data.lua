@@ -2,16 +2,17 @@ local maze_data = {}
 
 --[[ 
     data structure representing the maze
-    id for each cell is row|column
+    row of the cell
+    column of the cell
     visited true/false if visited by the robot
-    priority is the discovery order
-    parent is the id of parent cell
+    weight is the importance of the cell
+    parent is row and column of the parent cell
 ]]
 function maze_data.new()
     for i=1,16 do
         table.insert(maze_data,{})
         for j=1,16 do
-            table.insert(maze_data[i],{id = i.."|"..j, visited = 0, priority = 0, parent = "1|1"})
+            table.insert(maze_data[i],{row = i, column = j, visited = 0, weight = 0, parent = {row = 1, column = 1}})
         end
     end
 
@@ -22,12 +23,17 @@ function maze_data.update_visited(row, column, value)
     maze_data[row][column]["visited"] = value
 end
 
-function maze_data.update_priority(row, column, value)
-    maze_data[row][column]["priority"] = value
+function maze_data.update_weight(row, column, value)
+    maze_data[row][column]["weight"] = value
 end
 
 function maze_data.update_parent(row, column, value)
-    maze_data[row][column]["parent"] = value
+    maze_data[row][column]["parent"]["row"] = value.row
+    maze_data[row][column]["parent"]["column"] = value.column
+end
+
+function maze_data.get_cell_info(row, column)
+    return maze_data[row][column]
 end
 
 return maze_data
