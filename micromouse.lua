@@ -48,13 +48,14 @@ function init()
 	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
 
 	stopwatch.init()
+	depth_first.init()
 end
 
 
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
 
-	depth_first.start_algorithm()
+	depth_first.algorithm()
 	race_management.run()
 
 	move()
