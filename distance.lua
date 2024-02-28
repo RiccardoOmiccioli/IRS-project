@@ -32,10 +32,10 @@ end
 function get_all_distances()
     distances = {front = 0, back = 0, right = 0, left = 0}
 
-    distances.front = get_front_distance
-    distances.back = get_back_distance
-    distances.right = get_right_distance
-    distances.left = get_left_distance
+    distances.front = get_front_distance()
+    distances.back = get_back_distance()
+    distances.right = get_right_distance()
+    distances.left = get_left_distance()
     
     return distances
 end
