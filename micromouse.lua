@@ -54,8 +54,6 @@ end
 
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
-
-	depth_first.algorithm()
 	race_management.run()
 
 	move()
