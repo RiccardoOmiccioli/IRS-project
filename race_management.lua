@@ -1,6 +1,5 @@
 floor_detector = require "floor_detector"
 stopwatch = require "stopwatch"
-depth_first = require "depth_first"
 
 local race_management = {}
 
@@ -29,7 +28,6 @@ function race_management.run()
 		end
 		-- log("Time: " .. stopwatch.get_seconds())
 		-- stopwatch.print_debug() 
-		depth_first.algorithm()
 	end
 end
 

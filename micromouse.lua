@@ -56,7 +56,10 @@ end
 function step()
 	race_management.run()
 
-	move()
+	is_moving = move()
+	if not(is_moving) then
+		depth_first.algorithm()
+	end
 	-- if move() then print("Continue") else print("Done moving") end
 	-- if not move() then
 	-- 	print("Done moving")
@@ -65,6 +68,7 @@ function step()
 	-- ******************************************************************
 	-- check floor and start/stop time
 	-- if move() then print("Continue and check obstacle/calibrate") else
+		-- depth_first.algorithm()
 		-- check walls
 		-- decide next move
 	-- end
