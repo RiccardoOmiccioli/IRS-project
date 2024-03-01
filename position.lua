@@ -8,27 +8,29 @@ current_position = { x = -375, y = 375 }
 
 -- This function receives a BASIC_MOVE, MOVE_DIRECTION and a delta and updated the position based on the current heading and position
 function update_position(basic_move, direction, delta)
-    if not delta then delta = 50 end
+    if not delta then delta = MAZE_UNIT_LENGHT end
     if basic_move == BASIC_MOVE.STRAIGHT then
-        if direction == MOVE_DIRECTION.FORWARD then
-            if current_heading == HEADING.NORTH then
-                current_position.y = current_position.y + delta
-            elseif current_heading == HEADING.EAST then
-                current_position.x = current_position.x + delta
-            elseif current_heading == HEADING.SOUTH then
-                current_position.y = current_position.y - delta
-            elseif current_heading == HEADING.WEST then
-                current_position.x = current_position.x - delta
-            end
-        elseif direction == MOVE_DIRECTION.BACKWARDS then
-            if current_heading == HEADING.NORTH then
-                current_position.y = current_position.y - delta
-            elseif current_heading == HEADING.EAST then
-                current_position.x = current_position.x - delta
-            elseif current_heading == HEADING.SOUTH then
-                current_position.y = current_position.y + delta
-            elseif current_heading == HEADING.WEST then
-                current_position.x = current_position.x + delta
+        if delta >= MAZE_UNIT_LENGHT / 2 then -- consider only movements greater than half a cell to exlude calibration movements
+            if direction == MOVE_DIRECTION.FORWARD then
+                if current_heading == HEADING.NORTH then
+                    current_position.y = current_position.y + delta
+                elseif current_heading == HEADING.EAST then
+                    current_position.x = current_position.x + delta
+                elseif current_heading == HEADING.SOUTH then
+                    current_position.y = current_position.y - delta
+                elseif current_heading == HEADING.WEST then
+                    current_position.x = current_position.x - delta
+                end
+            elseif direction == MOVE_DIRECTION.BACKWARDS then
+                if current_heading == HEADING.NORTH then
+                    current_position.y = current_position.y - delta
+                elseif current_heading == HEADING.EAST then
+                    current_position.x = current_position.x - delta
+                elseif current_heading == HEADING.SOUTH then
+                    current_position.y = current_position.y + delta
+                elseif current_heading == HEADING.WEST then
+                    current_position.x = current_position.x + delta
+                end
             end
         end
     elseif basic_move == BASIC_MOVE.TURN then
