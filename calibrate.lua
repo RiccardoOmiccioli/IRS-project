@@ -5,18 +5,32 @@ require "proximity"
 SENSOR_DISTANCE_FROM_WALL = 14
 POSITION_ERROR_THRESHOLD = 1
 
+is_slow_calibrating = false
+
 -- This function checks if a calibration is needed based on the distance from the front wall if available and exceeds the threshold
 function is_slow_calibration_needed()
     angle, value = get_closest_object()
-    -- print(tostring(angle) .. " " .. tostring(value))
+    if angle ~= 0 and not is_slow_calibrating then
+        return true
+    elseif angle == 0 and is_slow_calibrating then
+        is_slow_calibrating = false
+        return false
+    else
+        return false
+    end
 end
 
 function slow_calibrate()
-    angle, value = get_closest_object()
-    if angle > 0 then
-        print("Calibrating: " .. angle)
-    else
-        print("Calibrating: " .. value)
+    if not is_slow_calibrating then
+        is_slow_calibrating = true
+        angle, value = get_closest_object()
+        if angle > 0 then
+            print("Calibrating angle: " .. angle .. " turning right of " .. tostring(math.pi / 2 - math.abs(angle)))
+            move(BASIC_MOVE.TURN, MOVE_DIRECTION.RIGHT, math.pi / 2 - math.abs(angle), true)
+        elseif angle < 0 then
+            print("Calibrating angle: " .. angle .. " turning left of " .. tostring(math.pi - math.abs(angle)))
+            move(BASIC_MOVE.TURN, MOVE_DIRECTION.LEFT, math.pi / 2 - math.abs(angle), true)
+        end
     end
 end
 
