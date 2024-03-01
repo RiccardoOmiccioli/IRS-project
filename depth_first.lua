@@ -1,7 +1,7 @@
 maze_data = require "maze_data"
 distance = require "distance"
 
-cardinal_points = {NORTH, SOUTH, EAST, WEST}
+cardinal_points = {NORTH=1, SOUTH=2, EAST=3, WEST=4}
 local depth_first = {}
 local maze
 local robot_orientation = cardinal_points.EAST
@@ -12,39 +12,74 @@ function depth_first.init()
 end
 
 function depth_first.algorithm()
-    -- get current_cell
-    current_cell_info = maze.get_cell_info(1, 1) -- to do: add current_cell.row, current_cell.column
+    current_row, current_col = get_current_row_and_column()
+    current_cell_info = maze.get_cell_info(current_row, current_col)
 
-    maze.update_visited(current_cell_info.row, current_cell_info.column, 1)
-    maze.update_parent(current_cell_info.row, current_cell_info.column,{row = parent.row, column = parent.column})
+    maze.update_visited(current_row, current_col, 1)
+    maze.update_parent(current_row, current_col,{row = parent.row, column = parent.column})
     
     -- check walls for neighbours
     wall_distances = get_all_distances() 
     for key,value in pairs(wall_distances) do
-        if value == -2 or value > 20 then
-            -- decide reachable neighbours + update them in maze
-            --[[ robot_orientation and key
-            EAST 
-                front => (1,1) {current_row, current_column+1} (1,2) 
-                -- maze.update_reachable_neighbours(1,1,{row=1, column =2})
-                -- weight = 1
-                back
-                right
-                left
-            OVEST
-                front => (1,5) {current_row, current_column-1} (1,4)
-                -- maze.update_reachable_neighbours(1,5,{row=1, column =4})
-                back
-                right
-                left ]]
+        if value == -2 or value > 16 then
+            if robot_orientation == cardinal_points.NORTH then
+                if key == "front" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row-1, column=current_col})
+                elseif key == "back" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row+1, column=current_col})
+                elseif key == "right" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col+1})
+                elseif key == "left" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col-1})
+                end
+            elseif robot_orientation == cardinal_points.EAST then
+                if key == "front" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col+1})
+                elseif key == "back" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col-1})
+                elseif key == "right" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row+1, column=current_col})
+                elseif key == "left" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row-1, column=current_col})
+                end
+            elseif robot_orientation == cardinal_points.SOUTH then
+                if key == "front" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row+1, column=current_col})
+                elseif key == "back" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row-1, column=current_col})
+                elseif key == "right" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col-1})
+                elseif key == "left" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col+1})
+                end
+            elseif robot_orientation == cardinal_points.WEST then
+                if key == "front" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col-1})
+                elseif key == "back" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col+1})
+                elseif key == "right" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row-1, column=current_col})
+                elseif key == "left" then
+                    maze.update_reachable_neighbours(current_row, current_col,{row=current_row+1, column=current_col})
+                end
+            end
+        
+            -- update weight
         end
     end
 
+    for j=1,#maze do
+        if #maze[j].reachable_neighbours ~=0 then
+            for i=1,#maze[j].reachable_neighbours do
+                log(maze[j].row..","..maze[j].column.."->"..maze[j].reachable_neighbours[i].row .. "|" .. maze[j].reachable_neighbours[i].column)
+            end
+        end
+    end
     -- decide movement
     -- update robot_orientation
    
-    parent.row = current_cell_info.row
-    parent.column = current_cell_info.column
+    parent.row = current_row
+    parent.column = current_col
 
     -- end
 end

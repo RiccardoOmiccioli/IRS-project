@@ -1,6 +1,7 @@
 require "move"
 require "distance"
 require "calibrate"
+require "position"
 
 -- Global variables
 n_steps = 0
