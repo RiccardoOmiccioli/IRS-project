@@ -1,10 +1,10 @@
 maze_data = require "maze_data"
 distance = require "distance"
 
-cardinal_points = {NORTH=1, SOUTH=2, EAST=3, WEST=4}
+--cardinal_points = {NORTH=1, SOUTH=2, EAST=3, WEST=4}
 local depth_first = {}
 local maze
-local robot_orientation = cardinal_points.EAST
+--local robot_orientation = cardinal_points.EAST
 local parent = {row=1,column=1}
 
 function depth_first.init()
@@ -12,6 +12,8 @@ function depth_first.init()
 end
 
 function depth_first.algorithm()
+    robot_orientation = get_current_heading()
+    log(robot_orientation..", North> "..HEADING.NORTH)
     current_row, current_col = get_current_row_and_column()
     current_cell_info = maze.get_cell_info(current_row, current_col)
 
@@ -22,7 +24,7 @@ function depth_first.algorithm()
     wall_distances = get_all_distances() 
     for key,value in pairs(wall_distances) do
         if value == -2 or value > 16 then
-            if robot_orientation == cardinal_points.NORTH then
+            if robot_orientation == HEADING.NORTH then
                 if key == "front" then
                     maze.update_reachable_neighbours(current_row, current_col,{row=current_row-1, column=current_col})
                 elseif key == "back" then
@@ -32,7 +34,7 @@ function depth_first.algorithm()
                 elseif key == "left" then
                     maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col-1})
                 end
-            elseif robot_orientation == cardinal_points.EAST then
+            elseif robot_orientation == HEADING.EAST then
                 if key == "front" then
                     maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col+1})
                 elseif key == "back" then
@@ -42,7 +44,7 @@ function depth_first.algorithm()
                 elseif key == "left" then
                     maze.update_reachable_neighbours(current_row, current_col,{row=current_row-1, column=current_col})
                 end
-            elseif robot_orientation == cardinal_points.SOUTH then
+            elseif robot_orientation == HEADING.SOUTH then
                 if key == "front" then
                     maze.update_reachable_neighbours(current_row, current_col,{row=current_row+1, column=current_col})
                 elseif key == "back" then
@@ -52,7 +54,7 @@ function depth_first.algorithm()
                 elseif key == "left" then
                     maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col+1})
                 end
-            elseif robot_orientation == cardinal_points.WEST then
+            elseif robot_orientation == HEADING.WEST then
                 if key == "front" then
                     maze.update_reachable_neighbours(current_row, current_col,{row=current_row, column=current_col-1})
                 elseif key == "back" then
@@ -76,12 +78,9 @@ function depth_first.algorithm()
         end
     end
     -- decide movement
-    -- update robot_orientation
    
     parent.row = current_row
     parent.column = current_col
-
-    -- end
 end
 
 function depth_first.sort()
