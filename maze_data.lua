@@ -25,7 +25,9 @@ function maze_data.update_visited(row, column, value)
 end
 
 function maze_data.update_weight(row, column, value)
-    maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["weight"] = value
+    if maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["weight"] == 0 then
+        maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["weight"] = value
+    end
 end
 
 function maze_data.update_parent(row, column, value)
