@@ -14,7 +14,7 @@ MAX_ROW_COL_POS = 16
 function maze_data.new()
     for i=MIN_ROW_COL_POS,MAX_ROW_COL_POS do
         for j=MIN_ROW_COL_POS,MAX_ROW_COL_POS do
-            table.insert(maze_data,{row = i, column = j, visited = 0, weight = 0, parent = {row = 1, column = 1}, reachable_neighbours = {}})
+            table.insert(maze_data,{row = i, column = j, visited = false, weight = 0, parent = {row = 1, column = 1}, reachable_neighbours = {}})
         end
     end
     return maze_data
