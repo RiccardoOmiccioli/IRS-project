@@ -130,7 +130,7 @@ function move(movement, direction, delta, has_priority)
             end
         end
     end
-    return is_moving
+    return is_moving, #move_array
 end
 
 MOVE_DIRECTION = { FORWARD = 1, BACKWARDS = 2, LEFT = 3, RIGHT = 4 }
