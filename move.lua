@@ -116,8 +116,8 @@ function move(movement, direction, delta, has_priority)
             if is_stopped() then
                 row, col = get_current_row_and_column()
                 -- print("Current position x:" .. current_position.x .. " y:" .. current_position.y .. "    row:" .. row .. " col:" .. col .. " heading:" .. current_heading)
-                if is_fast_calibration_needed() then
-                    fast_calibrate()
+                if is_calibration_needed() then
+                    calibrate_position()
                 end
                 if #move_array > 0 then
                     current_move = table.remove(move_array, 1)
