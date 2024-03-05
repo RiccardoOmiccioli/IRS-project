@@ -1,9 +1,9 @@
 MAZE_UNIT_LENGHT = 50 -- cm length of a maze unit
 MAX_CONSTANT_VELOCITY = 100 -- cm/s to be used on movements that do not require acceleration or deceleration
-MIN_LINEAR_VELOCITY = 100 -- cm/s minimum linear velocity to be used on movements that require acceleration or deceleration
-MAX_LINEAR_VELOCITY = 1000 -- cm/s maximum linear velocity to be used on movements that require acceleration or deceleration
-MAX_ACCELERATION = 4 -- cm/s^2
-MAX_DECELERATION = 4 -- cm/s^2
+MIN_LINEAR_VELOCITY = 50 -- cm/s minimum linear velocity to be used on movements that require acceleration or deceleration
+MAX_LINEAR_VELOCITY = 100 -- cm/s maximum linear velocity to be used on movements that require acceleration or deceleration
+MAX_ACCELERATION = 3 -- cm/s^2
+MAX_DECELERATION = 3 -- cm/s^2
 TURN_LINEAR_LENGTH = math.pi * robot.wheels.axis_length / 4 -- linear distance that the wheels needs to travel to turn 90 degrees
 TURN_RADIUS =  robot.wheels.axis_length / 2 -- radius of the circle that the wheels travels when turning
 
@@ -20,7 +20,6 @@ move_array = {} -- array of movements to be done
 function is_stopped()
     return not is_distance_changed()
 end
-
 
 -- Starts a new straight movement or continues movement if already going straight
 function straight()
@@ -112,24 +111,19 @@ function move(movement, direction, delta, has_priority)
         end
     else
         if is_moving then
-            if is_slow_calibration_needed() then -- pause the current movement
-                is_moving = false
-                robot.wheels.set_velocity(0, 0)
-                table.insert(move_array, 1, {movement = current_move.movement, direction = current_move.direction, delta = distance_to_travel - distance_traveled})
-            else
-                current_move.movement()
-            end
+            current_move.movement()
         else
             if is_stopped() then
                 row, col = get_current_row_and_column()
-                print("Current position x:" .. current_position.x .. " y:" .. current_position.y .. "    row:" .. row .. " col:" .. col .. " heading:" .. current_heading)
-                if is_slow_calibration_needed() then
-                    -- slow_calibrate()
-                elseif is_fast_calibration_needed() then
+                -- print("Current position x:" .. current_position.x .. " y:" .. current_position.y .. "    row:" .. row .. " col:" .. col .. " heading:" .. current_heading)
+                if is_fast_calibration_needed() then
                     fast_calibrate()
                 end
                 if #move_array > 0 then
                     current_move = table.remove(move_array, 1)
+                    -- _, basic_move = table_contains(BASIC_MOVE, current_move.movement)
+                    -- _, move_direction = table_contains(MOVE_DIRECTION, current_move.direction)
+                    -- print("Starting new move: " .. tostring(basic_move) .. " " .. tostring(move_direction))
                     update_position(current_move.movement, current_move.direction, current_move.delta)
                     current_move.movement()
                 end
@@ -158,15 +152,18 @@ BASIC_MOVE = { STRAIGHT = straight, TURN = turn, L_TURN = l_turn }
 ]]
 COMPLEX_MOVE = { N_STRAIGHT = 1, FLIP = 2, FLIP_AND_FORWARD = 3, TURN_AND_FORWARD = 4 }
 
--- Checks if a table contains a given value
+-- Checks if a table contains a given value and returns first occurrence
 function table_contains(table, value)
     found = false
+    key = nil
     for k, v in pairs(table) do
         if v == value then
             found = true
+            key = k
+            break
         end
     end
-    return found
+    return found, key, value
 end
 
 --[[ Usage

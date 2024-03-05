@@ -20,7 +20,8 @@ function init()
 	robot.leds.set_single_color(9, "green")
 	robot.leds.set_single_color(10, "green")
 
---[[ 	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
+--[[
+	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
 	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
 	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
 	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
@@ -46,7 +47,8 @@ function init()
 	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
 	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 3)
 	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT) ]]
+	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
+--]]
 
 	stopwatch.init()
 	depth_first.init()
@@ -57,21 +59,19 @@ end
 function step()
 	race_management.run()
 
-	is_moving = move()
-	if not(is_moving) then
-		depth_first.algorithm()
+	is_moving, remaining_moves = move()
+	if not is_moving then
+		if remaining_moves == 0 then
+			depth_first.algorithm()
+		end
 	end
-	-- if move() then print("Continue") else print("Done moving") end
-	-- if not move() then
-	-- 	print("Done moving")
-	-- end
 
 	-- ******************************************************************
 	-- check floor and start/stop time
 	-- if move() then print("Continue and check obstacle/calibrate") else
 		-- depth_first.algorithm()
-		-- check walls
-		-- decide next move
+			-- check walls
+			-- decide next move
 	-- end
 	-- ******************************************************************
 
