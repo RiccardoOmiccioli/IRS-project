@@ -2,7 +2,7 @@ local maze_data = {}
 MIN_ROW_COL_POS = 1
 MAX_ROW_COL_POS = 16
 
---[[ 
+--[[
     data structure representing the maze
     row of the cell
     column of the cell
@@ -12,49 +12,59 @@ MAX_ROW_COL_POS = 16
     reachable_neighbours neighbour cells reachable, no walls between
 ]]
 function maze_data.new()
-    for i=MIN_ROW_COL_POS,MAX_ROW_COL_POS do
-        for j=MIN_ROW_COL_POS,MAX_ROW_COL_POS do
-            table.insert(maze_data,{row = i, column = j, visited = false, weight = 0, parent = {row = 1, column = 1}, reachable_neighbours = {}})
+    for i = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
+        for j = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
+            table.insert(maze_data, {row = i, column = j, visited = false, weight = 0, parent = {row = nil, column = nil}, reachable_neighbours = {}})
         end
     end
     return maze_data
 end
 
 function maze_data.update_visited(row, column, value)
-    maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["visited"] = value
+    maze_data.get_cell(row, column).visited = value
 end
 
 function maze_data.update_weight(row, column, value)
-    if maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["weight"] == 0 then
-        maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["weight"] = value
+    if maze_data.get_cell(row, column).weight == 0 then
+        maze_data.get_cell(row, column).weight = value
     end
 end
 
 function maze_data.update_parent(row, column, value)
-    maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["parent"]["row"] = value.row
-    maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["parent"]["column"] = value.column
+    maze_data.get_cell(row, column).parent.row = value.row
+    maze_data.get_cell(row, column).parent.column = value.column
 end
 
-function maze_data.update_reachable_neighbours(row, column, value)
-    if value.row >= MIN_ROW_COL_POS and value.row <= MAX_ROW_COL_POS 
-    and value.column >= MIN_ROW_COL_POS and value.column <= MAX_ROW_COL_POS then
-        if #maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["reachable_neighbours"] == 0 then
-            table.insert(maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["reachable_neighbours"], value)
-        else
-            is_present = false
-            for _,v in pairs(maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["reachable_neighbours"]) do
-                if v.row == value.row and v.column == value.column then
-                    is_present = true
-                    break
-                end
+-- Updates the reachable neighbours list of the cell at the specified row and column
+function maze_data.update_reachable_neighbours(row, column, neighbour)
+    -- Check if the neighbour is within the maze boundaries
+    if neighbour.row >= MIN_ROW_COL_POS and neighbour.row <= MAX_ROW_COL_POS and
+       neighbour.column >= MIN_ROW_COL_POS and neighbour.column <= MAX_ROW_COL_POS then
+        local cell = maze_data.get_cell(row, column)
+
+        -- Check if the neighbour is not already in the reachable neighbours list
+        local is_present = false
+        for _, v in ipairs(cell.reachable_neighbours) do
+            if v.row == neighbour.row and v.column == neighbour.column then
+                is_present = true
+                break
             end
-            if not(is_present) then table.insert(maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]["reachable_neighbours"], value) end
+        end
+
+        -- If the neighbour is not present, insert it into the reachable neighbours list
+        if not is_present then
+            table.insert(cell.reachable_neighbours, neighbour)
         end
     end
 end
 
-function maze_data.get_cell_info(row, column)
-    return maze_data[((row-MIN_ROW_COL_POS)*MAX_ROW_COL_POS)+column]
+-- Returns the cell at the specified row and column
+function maze_data.get_cell(row, column)
+    return maze_data[((row - MIN_ROW_COL_POS) * MAX_ROW_COL_POS) + column]
+end
+
+function maze_data.print_cell(cell)
+    print("cell: " .. cell.row .. "-" .. cell.column .. " visited: " .. tostring(cell.visited) .. " weight: " .. cell.weight .. " parent: " .. tostring(cell.parent.row) .. "-" .. tostring(cell.parent.column) .. " reachable_neighbours: " .. tostring(#cell.reachable_neighbours))
 end
 
 return maze_data
