@@ -124,7 +124,7 @@ function depth_first.algorithm()
                 if current_row - neighbour.row < 0 then
                     move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
                 elseif current_row - neighbour.row > 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.RIGHT)
+                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.BACKWARDS)
                 end
             elseif current_col - neighbour.column > 0 then
                 move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
@@ -176,7 +176,7 @@ end
 
 function depth_first.sort()
     temp_table = maze
-    table.sort(temp_table, function(a, b) return a.weight < b.weight end)
+    table.sort(temp_table, function(a, b) return a.weight > b.weight end)
     return temp_table
 end
 
@@ -189,5 +189,16 @@ function depth_first.visited_filter()
     end
     return temp_table
 end
+
+function depth_first.not_visited_filter()
+    local temp_table = {}
+    for i, cell in ipairs(maze) do
+        if not cell.visited then
+            table.insert(temp_table, cell)
+        end
+    end
+    return temp_table
+end
+
 
 return depth_first
