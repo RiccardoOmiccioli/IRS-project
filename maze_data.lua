@@ -32,7 +32,7 @@ end
 
 function maze_data.update_parent(row, column, value)
     local cell = maze_data.get_cell(row, column)
-    if not cell.parent.row and not cell.parent.column then
+    if not cell.visited then
         cell.parent.row = value.row
         cell.parent.column = value.column
     end
