@@ -7,6 +7,8 @@ require "position"
 n_steps = 0
 
 depth_first = require "depth_first"
+random_explore = require "random_explore"
+
 race_management = require "race_management"
 
 -- This function is executed every time you press the 'execute' button
@@ -52,17 +54,19 @@ function init()
 
 	stopwatch.init()
 	depth_first.init()
+	-- random_explore.init()
 end
 
 
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
-	race_management.run()
+	-- race_management.run()
 
 	is_moving, remaining_moves = move()
 	if not is_moving then
 		if remaining_moves == 0 then
 			depth_first.algorithm()
+			-- random_explore.algorithm()
 		end
 	end
 

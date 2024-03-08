@@ -67,4 +67,52 @@ function maze_data.print_cell(cell)
     print("cell: " .. cell.row .. "-" .. cell.column .. " visited: " .. tostring(cell.visited) .. " weight: " .. cell.weight .. " parent: " .. tostring(cell.parent.row) .. "-" .. tostring(cell.parent.column) .. " reachable_neighbours: " .. tostring(#cell.reachable_neighbours))
 end
 
+--[[
+    Prints all the cells in the maze 16 at a time putting a new line after each 16 cells
+    If a cell is visited prints ■ otherwise □
+    If a cell is the current cell prints ◉
+    If a cell has a parent prints ▥
+    If a path is provided prints ◎ in the last cell of the path and ◍ in every other cell of the path
+]]
+function maze_data.print_maze(maze, path)
+    if not path then
+        path = {}
+    end
+    local current_row, current_col = get_current_row_and_column()
+    local current_heading = get_current_heading()
+    for i = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
+        for j = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
+            local cell = maze.get_cell(i, j)
+            if cell.row == current_row and cell.column == current_col then
+                if current_heading == HEADING.NORTH then
+                    io.write("◒ ")
+                elseif current_heading == HEADING.EAST then
+                    io.write("◐ ")
+                elseif current_heading == HEADING.SOUTH then
+                    io.write("◓ ")
+                elseif current_heading == HEADING.WEST then
+                    io.write("◑ ")
+                end
+                -- io.write("◉ ")
+            elseif cell.row == path[#path].row and cell.column == path[#path].column then
+                io.write("◎ ")
+            elseif table_contains(path, cell) then
+                io.write("● ")
+            else
+                if cell.visited then
+                    io.write("◼ ")
+                elseif not cell.visited then
+                    if cell and cell.parent and cell.parent.row and cell.parent.column then
+                        io.write("▥ ")
+                    else
+                        io.write("◻ ")
+                    end
+                end
+            end
+        end
+        print("")
+    end
+end
+
+
 return maze_data

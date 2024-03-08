@@ -15,6 +15,7 @@ end
 function trace_path_to_start(cell, maze)
     local path = {}
 
+    -- insert current cell in path
     if cell and cell.row and cell.column then
         table.insert(path, cell)
     end
@@ -29,6 +30,7 @@ function trace_path_to_start(cell, maze)
         end
     end
 
+    -- if the cell has no parent, return the path
     if not cell.parent.row or not cell.parent.column then
         return path
     end
@@ -54,7 +56,14 @@ function trace_path_to_target(start_cell, target_cell, maze)
 
     -- handle special cases
     if start_cell.row == 1 and start_cell.column == 1 then
-        return path
+        local function reverse(tab)
+            for i = 1, #tab//2, 1 do
+                tab[i], tab[#tab-i+1] = tab[#tab-i+1], tab[i]
+            end
+            return tab
+        end
+        reverse(target_path)
+        return target_path
     end
     if target_cell.row == 1 and target_cell.column == 1 then
         return start_path
@@ -111,7 +120,7 @@ function calculate_path_movements(path)
         return movements
     end
 
-    local current_heading = get_current_heading()
+    local heading = get_current_heading()
     local current_row, current_col = get_current_row_and_column()
 
     -- remove the first cell from the path as it is the current cell
@@ -121,51 +130,51 @@ function calculate_path_movements(path)
         local cell = path[i]
         if cell.row == current_row then
             if cell.column > current_col then
-                if current_heading == HEADING.NORTH then
+                if heading == HEADING.NORTH then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.RIGHT})
-                elseif current_heading == HEADING.EAST then
+                elseif heading == HEADING.EAST then
                     table.insert(movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD})
-                elseif current_heading == HEADING.SOUTH then
+                elseif heading == HEADING.SOUTH then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.LEFT})
-                elseif current_heading == HEADING.WEST then
+                elseif heading == HEADING.WEST then
                     table.insert(movements, {movement = COMPLEX_MOVE.FLIP_AND_FORWARD})
                 end
-                current_heading = HEADING.EAST
+                heading = HEADING.EAST
             elseif cell.column < current_col then
-                if current_heading == HEADING.NORTH then
+                if heading == HEADING.NORTH then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.LEFT})
-                elseif current_heading == HEADING.EAST then
+                elseif heading == HEADING.EAST then
                     table.insert(movements, {movement = COMPLEX_MOVE.FLIP_AND_FORWARD})
-                elseif current_heading == HEADING.SOUTH then
+                elseif heading == HEADING.SOUTH then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.RIGHT})
-                elseif current_heading == HEADING.WEST then
+                elseif heading == HEADING.WEST then
                     table.insert(movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD})
                 end
-                current_heading = HEADING.WEST
+                heading = HEADING.WEST
             end
         elseif cell.column == current_col then
             if cell.row > current_row then
-                if current_heading == HEADING.NORTH then
+                if heading == HEADING.NORTH then
                     table.insert(movements, {movement = COMPLEX_MOVE.FLIP_AND_FORWARD})
-                elseif current_heading == HEADING.EAST then
+                elseif heading == HEADING.EAST then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.RIGHT})
-                elseif current_heading == HEADING.SOUTH then
+                elseif heading == HEADING.SOUTH then
                     table.insert(movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD})
-                elseif current_heading == HEADING.WEST then
+                elseif heading == HEADING.WEST then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.LEFT})
                 end
-                current_heading = HEADING.SOUTH
+                heading = HEADING.SOUTH
             elseif cell.row < current_row then
-                if current_heading == HEADING.NORTH then
+                if heading == HEADING.NORTH then
                     table.insert(movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD})
-                elseif current_heading == HEADING.EAST then
+                elseif heading == HEADING.EAST then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.LEFT})
-                elseif current_heading == HEADING.SOUTH then
+                elseif heading == HEADING.SOUTH then
                     table.insert(movements, {movement = COMPLEX_MOVE.FLIP_AND_FORWARD})
-                elseif current_heading == HEADING.WEST then
+                elseif heading == HEADING.WEST then
                     table.insert(movements, {movement = COMPLEX_MOVE.TURN_AND_FORWARD, direction = MOVE_DIRECTION.RIGHT})
                 end
-                current_heading = HEADING.NORTH
+                heading = HEADING.NORTH
             end
         end
         current_row = cell.row
@@ -175,7 +184,7 @@ function calculate_path_movements(path)
     for i, current_movement in ipairs(movements) do
         _, basic_move = table_contains(BASIC_MOVE, current_movement.movement)
         _, complex_move = table_contains(COMPLEX_MOVE, current_movement.movement)
-        _, move_direction = table_contains(MOVE_DIRECTION, current_move.direction)
+        _, move_direction = table_contains(MOVE_DIRECTION, current_movement.direction)
         move_movement = basic_move or complex_move
         print(tostring(move_movement) .. " " .. tostring(move_direction))
     end

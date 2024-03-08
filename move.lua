@@ -2,8 +2,8 @@ MAZE_UNIT_LENGHT = 50 -- cm length of a maze unit
 MAX_CONSTANT_VELOCITY = 100 -- cm/s to be used on movements that do not require acceleration or deceleration
 MIN_LINEAR_VELOCITY = 50 -- cm/s minimum linear velocity to be used on movements that require acceleration or deceleration
 MAX_LINEAR_VELOCITY = 100 -- cm/s maximum linear velocity to be used on movements that require acceleration or deceleration
-MAX_ACCELERATION = 3 -- cm/s^2
-MAX_DECELERATION = 3 -- cm/s^2
+MAX_ACCELERATION = 2 -- cm/s^2
+MAX_DECELERATION = 2 -- cm/s^2
 TURN_LINEAR_LENGTH = math.pi * robot.wheels.axis_length / 4 -- linear distance that the wheels needs to travel to turn 90 degrees
 TURN_RADIUS =  robot.wheels.axis_length / 2 -- radius of the circle that the wheels travels when turning
 

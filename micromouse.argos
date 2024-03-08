@@ -35,7 +35,7 @@
   <!-- * Arena configuration * -->
   <!-- *********************** -->
   <arena size="8, 8, 1" center="0,0,0.5">
-    <floor id="f" source="image" path="maze_background.png"/>
+    <floor id="f" source="image" path="maze_background_debug.png"/>
 
     <!-- Perimeter wall -->
     <box id="wn" size="8, 0.05, 0.2" movable="false">

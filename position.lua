@@ -7,9 +7,9 @@ current_heading = HEADING.EAST
 current_position = { x = -375, y = 375 }
 
 -- This function receives a BASIC_MOVE, MOVE_DIRECTION and a delta and updated the position based on the current heading and position
-function update_position(basic_move, direction, delta)
-    if not delta then delta = MAZE_UNIT_LENGHT end
-    if basic_move == BASIC_MOVE.STRAIGHT then
+function update_position(movement, direction, delta)
+    if movement == BASIC_MOVE.STRAIGHT then
+        if not delta then delta = MAZE_UNIT_LENGHT end
         if delta >= MAZE_UNIT_LENGHT / 2 then -- consider only movements greater than half a cell to exlude calibration movements
             if direction == MOVE_DIRECTION.FORWARD then
                 if current_heading == HEADING.NORTH then
@@ -33,26 +33,41 @@ function update_position(basic_move, direction, delta)
                 end
             end
         end
-    elseif basic_move == BASIC_MOVE.TURN then
-        if direction == MOVE_DIRECTION.LEFT then
-            if current_heading == HEADING.NORTH then
-                current_heading = HEADING.WEST
-            elseif current_heading == HEADING.EAST then
-                current_heading = HEADING.NORTH
-            elseif current_heading == HEADING.SOUTH then
-                current_heading = HEADING.EAST
-            elseif current_heading == HEADING.WEST then
-                current_heading = HEADING.SOUTH
+    elseif movement == BASIC_MOVE.TURN then
+        if not delta then delta = math.pi / 2 end
+        if delta == math.pi / 2 then
+            if direction == MOVE_DIRECTION.LEFT then
+                if current_heading == HEADING.NORTH then
+                    current_heading = HEADING.WEST
+                elseif current_heading == HEADING.EAST then
+                    current_heading = HEADING.NORTH
+                elseif current_heading == HEADING.SOUTH then
+                    current_heading = HEADING.EAST
+                elseif current_heading == HEADING.WEST then
+                    current_heading = HEADING.SOUTH
+                end
+            elseif direction == MOVE_DIRECTION.RIGHT then
+                if current_heading == HEADING.NORTH then
+                    current_heading = HEADING.EAST
+                elseif current_heading == HEADING.EAST then
+                    current_heading = HEADING.SOUTH
+                elseif current_heading == HEADING.SOUTH then
+                    current_heading = HEADING.WEST
+                elseif current_heading == HEADING.WEST then
+                    current_heading = HEADING.NORTH
+                end
             end
-        elseif direction == MOVE_DIRECTION.RIGHT then
-            if current_heading == HEADING.NORTH then
-                current_heading = HEADING.EAST
-            elseif current_heading == HEADING.EAST then
-                current_heading = HEADING.SOUTH
-            elseif current_heading == HEADING.SOUTH then
-                current_heading = HEADING.WEST
-            elseif current_heading == HEADING.WEST then
-                current_heading = HEADING.NORTH
+        elseif delta == math.pi then
+            if direction == MOVE_DIRECTION.LEFT or direction == MOVE_DIRECTION.RIGHT then
+                if current_heading == HEADING.NORTH then
+                    current_heading = HEADING.SOUTH
+                elseif current_heading == HEADING.EAST then
+                    current_heading = HEADING.WEST
+                elseif current_heading == HEADING.SOUTH then
+                    current_heading = HEADING.NORTH
+                elseif current_heading == HEADING.WEST then
+                    current_heading = HEADING.EAST
+                end
             end
         end
     end
