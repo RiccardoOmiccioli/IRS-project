@@ -31,8 +31,11 @@ function maze_data.update_weight(row, column, value)
 end
 
 function maze_data.update_parent(row, column, value)
-    maze_data.get_cell(row, column).parent.row = value.row
-    maze_data.get_cell(row, column).parent.column = value.column
+    local cell = maze_data.get_cell(row, column)
+    if not cell.parent.row and not cell.parent.column then
+        cell.parent.row = value.row
+        cell.parent.column = value.column
+    end
 end
 
 -- Updates the reachable neighbours list of the cell at the specified row and column
