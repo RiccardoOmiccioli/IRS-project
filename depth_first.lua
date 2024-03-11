@@ -7,9 +7,10 @@ local depth_first = {}
 local maze
 local parent = {row = nil, column = nil}
 
+
 function depth_first.init()
     maze = maze_data.new()
-    maze.update_weight(1, 1, 1) -- Initialize first cell weight
+    --maze.update_weight(1, 1, 1) -- Initialize first cell weight
 end
 
 function depth_first.algorithm()
@@ -28,84 +29,72 @@ function depth_first.algorithm()
                 local row_temp, column_temp = calculate_neighbour_cell(maze, current_row, current_col, robot_orientation, key)
 
                 -- Update neighbours weight
-                if maze.get_cell(row_temp, column_temp).weight == 0 then
+               --[[  if maze.get_cell(row_temp, column_temp).weight == 0 then
                     maze.update_weight(row_temp, column_temp, maze.get_cell(current_row, current_col).weight + 1)
-                end
+                end ]]
                 --log("r:"..row_temp .. " c:" .. column_temp .. " | weight: ".. maze.get_cell(row_temp, column_temp).weight)
             end
         end
     end
 
-    local reachable_neighbours = maze.get_cell(current_row, current_col).reachable_neighbours
+    local current_cell = maze.get_cell(current_row, current_col)
+    local reachable_neighbours = current_cell.reachable_neighbours
 
-    if #reachable_neighbours > 0 then
-        local num = math.random(1, #reachable_neighbours)
-        local neighbour = maze.get_cell(reachable_neighbours[num].row, reachable_neighbours[num].column)
+    -- for each reachable_neighbour that is not visited update parent with current cell
+    for i, neighbour in ipairs(reachable_neighbours) do
+        if not maze.get_cell(neighbour.row, neighbour.column).visited then
+           maze.update_parent(neighbour.row, neighbour.column, {row = current_row, column = current_col})
+        end
+    end
 
-        -- Decision of movement
-        if robot_orientation == HEADING.NORTH then
-            if current_col - neighbour.column < 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-            elseif current_col - neighbour.column == 0 then
-                if current_row - neighbour.row < 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.BACKWARDS)
-                elseif current_row - neighbour.row > 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
+    local not_visited_neighbours ={}
+
+    -- Create a table of not visited neighbour
+    for i, cell in ipairs(maze) do
+        for j, neighbour in ipairs(reachable_neighbours) do
+            if cell.row == neighbour.row and cell.column == neighbour.column then
+                if not cell.visited then
+                    table.insert(not_visited_neighbours, cell)
                 end
-            elseif current_col - neighbour.column > 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-            end
-        elseif robot_orientation == HEADING.EAST then
-            if current_row - neighbour.row < 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-            elseif current_row - neighbour.row == 0 then
-                if current_col - neighbour.column > 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.BACKWARDS)
-                elseif current_col - neighbour.column < 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-                end
-            elseif current_row - neighbour.row > 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-            end
-        elseif robot_orientation == HEADING.SOUTH then
-            if current_col - neighbour.column < 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-            elseif current_col - neighbour.column == 0 then
-                if current_row - neighbour.row < 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-                elseif current_row - neighbour.row > 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.BACKWARDS)
-                end
-            elseif current_col - neighbour.column > 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-            end
-        elseif robot_orientation == HEADING.WEST then
-            if current_row - neighbour.row < 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-            elseif current_row - neighbour.row == 0 then
-                if current_col - neighbour.column > 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-                elseif current_col - neighbour.column < 0 then
-                    move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.BACKWARDS)
-                end
-            elseif current_row - neighbour.row > 0 then
-                move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
             end
         end
     end
 
+    local destination
+
+    -- Check not visited neighbours size
+    if #not_visited_neighbours > 0 then
+        destination = not_visited_neighbours[math.random(1, #not_visited_neighbours)]
+    else
+        local parent_row, parent_column = depth_first.parent_with_neighbours_not_visited(current_cell.row, current_cell.column)
+        destination = maze.get_cell(parent_row, parent_column)
+    end
+
+    -- Debug
+    print("Current cell: r".. current_cell.row .. "| c"..current_cell.column)
+    print("Next cell: r".. destination.row .. "| c"..destination.column)
+  
+    -- Calculate path and move
+    local movements = calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
+    for _, movement in ipairs(movements) do
+       move(movement.movement, movement.direction, movement.delta)
+    end
+
+    maze.print_maze(maze, trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
+
     -- print for debug
-    for i, cell in ipairs(maze) do
+   --[[  for i, cell in ipairs(maze) do
         if #cell.reachable_neighbours > 0 then
             for j, neighbor in ipairs(cell.reachable_neighbours) do
                 log(cell.row .. "," .. cell.column .. ",w" .. cell.weight .. "->" .. neighbor.row .. "|" .. neighbor.column)
             end
         end
-    end
+    end ]]
 
+    -- Update parent
     parent.row, parent.column = current_row, current_col
 
-    current_cell_path = trace_path_to_start(maze.get_cell(current_row, current_col), maze)
+--[[     current_cell_path = trace_path_to_start(maze.get_cell(current_row, current_col), maze)
     visited_cells = depth_first.visited_filter()
     target_cell = visited_cells[math.random(1, #visited_cells)]
     target_cell_path = trace_path_to_start(target_cell, maze)
@@ -119,7 +108,7 @@ function depth_first.algorithm()
     print_path(trace_path_to_target(maze.get_cell(current_row, current_col), target_cell, maze))
     print("------------------------------")
     calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), target_cell, maze))
-    print("****************************************************************************************************")
+    print("****************************************************************************************************") ]]
 
 
 end
@@ -148,6 +137,30 @@ function depth_first.not_visited_filter()
         end
     end
     return temp_table
+end
+
+-- Recursively search for a parent with at least one not visited neighbour
+function  depth_first.parent_with_neighbours_not_visited(p_row, p_column)
+
+    local parent = maze.get_cell(p_row, p_column).parent
+    local parent_neighbours = maze.get_cell(parent.row, parent.column).reachable_neighbours
+
+    local has_one_not_visited = false
+
+    -- Check if parent has at least one not visited neighbour
+    for i = 1, #parent_neighbours do
+        local temp = maze.get_cell(parent_neighbours[i].row, parent_neighbours[i].column)
+        if not temp.visited then
+            has_one_not_visited = true              
+        end
+    end
+
+    if has_one_not_visited then
+        --print("Next parent with not visited neighbours: r".. parent.row .. "| c"..parent.column)
+        return parent.row, parent.column
+    else
+        return depth_first.parent_with_neighbours_not_visited(parent.row, parent.column)                   
+    end
 end
 
 
