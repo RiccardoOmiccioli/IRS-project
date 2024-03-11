@@ -4,30 +4,50 @@ stopwatch = require "stopwatch"
 local race_management = {}
 
 PENALTY_SEC = 3 -- seconds of penalty
+PENALTY_COOLDOWN = 100 -- number of steps until a new penalty can be added
+penalty_start = 0
 penalty_count = 0
 
-function race_management.run()
-    -- Check floor colour
-	check = floor_detector.check()
+is_penalty_enabled = true
+is_floor_detection_enabled = false
 
-	if check == floor_type.FINISH then
-		log("FINISH ZONE")
-		if penalty_count == 0 then -- Check penalty count
-			log("Arrival time: " .. stopwatch.get_seconds() .. " sec")
+function race_management.run()
+	stopwatch.increment()
+
+	if is_penalty_enabled then
+		race_management.check_penalty()
+	end
+	if is is_floor_detection_enabled then
+		Check floor colour
+		check = floor_detector.check()
+
+		if check == floor_type.FINISH then
+			log("FINISH ZONE")
+			if penalty_count == 0 then -- Check penalty count
+				log("Arrival time: " .. stopwatch.get_seconds() .. " sec")
+			else
+				log("Arrival time: " .. stopwatch.get_seconds() .. " sec" .. " + " .. penalty_count * PENALTY_SEC .. " sec penalty" )
+			end
 		else
-			log("Arrival time: " .. stopwatch.get_seconds() .. " sec" .. " + " .. penalty_count * PENALTY_SEC .. " sec penalty" )
+			log("MOVING")
+			-- Check floor and start stopwatch
+			if check == floor_type.START then
+				log("START ZONE")
+				stopwatch.init()
+			else
+				stopwatch.increment()
+			end
+			-- log("Time: " .. stopwatch.get_seconds())
+			-- stopwatch.print_debug()
 		end
-	else
-		log("MOVING")
-		-- Check floor and start stopwatch
-		if check == floor_type.START then
-			log("START ZONE")
-			stopwatch.init()
-		else
-			stopwatch.increment()
-		end
-		-- log("Time: " .. stopwatch.get_seconds())
-		-- stopwatch.print_debug() 
+	end
+end
+
+-- Check if a penalty need to be added by checking if the robot is touching a wall and if the cooldown has passed
+function race_management.check_penalty()
+	if is_touching_wall() and math.abs(penalty_start - stopwatch.get_steps()) >= PENALTY_COOLDOWN then
+		penalty_start = stopwatch.get_steps()
+		race_management.add_penalty()
 	end
 end
 

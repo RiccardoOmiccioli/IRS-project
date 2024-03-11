@@ -181,15 +181,18 @@ function calculate_path_movements(path)
         current_col = cell.column
     end
 
-    for i, current_movement in ipairs(movements) do
-        _, basic_move = table_contains(BASIC_MOVE, current_movement.movement)
-        _, complex_move = table_contains(COMPLEX_MOVE, current_movement.movement)
-        _, move_direction = table_contains(MOVE_DIRECTION, current_movement.direction)
+    optimized_movements = optimize_movements(movements)
+
+    for i, optimized_movement in ipairs(optimized_movements) do
+        _, basic_move = table_contains(BASIC_MOVE, optimized_movement.movement)
+        _, complex_move = table_contains(COMPLEX_MOVE, optimized_movement.movement)
+        _, move_direction = table_contains(MOVE_DIRECTION, optimized_movement.direction)
         move_movement = basic_move or complex_move
-        print(tostring(move_movement) .. " " .. tostring(move_direction))
+        move_delta = optimized_movement.delta or "default"
+        print(tostring(move_movement) .. " " .. tostring(move_direction) .. " " .. tostring(move_delta))
     end
 
-    return movements
+    return optimized_movements
 end
 
 function print_path(path)

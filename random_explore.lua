@@ -57,26 +57,14 @@ function random_explore.algorithm()
         target_cell = filtered_cells[math.random(1, #filtered_cells)]
     end
 
-
-
     current_cell_path = trace_path_to_start(maze.get_cell(current_row, current_col), maze)
     target_cell_path = trace_path_to_start(target_cell, maze)
-    print("****************************************************************************************************")
-    -- maze_data.print_cell(maze.get_cell(current_row, current_col))
-    -- maze_data.print_cell(target_cell)
-    print("current cell: " .. current_row .. "-" .. current_col .. " target cell: " .. target_cell.row .. "-" .. target_cell.column)
-    print("------------------------------")
-    print_path(current_cell_path)
-    print("------------------------------")
-    print_path(target_cell_path)
-    print("------------------------------")
-    print_path(trace_path_to_target(maze.get_cell(current_row, current_col), target_cell, maze))
-    print("****************************************************************************************************")
 
-    movements = calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), target_cell, maze))
+    local movements = calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), target_cell, maze))
     for _, movement in ipairs(movements) do
-       move(movement.movement, movement.direction)
+       move(movement.movement, movement.direction, movement.delta)
     end
+
     maze.print_maze(maze, trace_path_to_target(maze.get_cell(current_row, current_col), target_cell, maze))
 end
 

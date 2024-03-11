@@ -1,11 +1,24 @@
 MAZE_UNIT_LENGHT = 50 -- cm length of a maze unit
-MAX_CONSTANT_VELOCITY = 100 -- cm/s to be used on movements that do not require acceleration or deceleration
-MIN_LINEAR_VELOCITY = 50 -- cm/s minimum linear velocity to be used on movements that require acceleration or deceleration
-MAX_LINEAR_VELOCITY = 100 -- cm/s maximum linear velocity to be used on movements that require acceleration or deceleration
-MAX_ACCELERATION = 2 -- cm/s^2
-MAX_DECELERATION = 2 -- cm/s^2
 TURN_LINEAR_LENGTH = math.pi * robot.wheels.axis_length / 4 -- linear distance that the wheels needs to travel to turn 90 degrees
 TURN_RADIUS =  robot.wheels.axis_length / 2 -- radius of the circle that the wheels travels when turning
+
+MAX_FAST_CONSTANT_VELOCITY = 100 -- cm/s to be used on fast movements that do not require acceleration or deceleration
+MIN_FAST_LINEAR_VELOCITY = 100 -- cm/s minimum linear velocity to be used on fast movements that require acceleration or deceleration
+MAX_FAST_LINEAR_VELOCITY = 1000 -- cm/s maximum linear velocity to be used on fast movements that require acceleration or deceleration
+MAX_FAST_ACCELERATION = 4 -- cm/s^2 to be used on fast movements that require acceleration
+MAX_FAST_DECELERATION = 4 -- cm/s^2 to be used on fast movements that require deceleration
+
+MAX_SLOW_CONSTANT_VELOCITY = 50 -- cm/s to be used on slow movements that do not require acceleration or deceleration
+MIN_SLOW_LINEAR_VELOCITY = 50 -- cm/s minimum linear velocity to be used on slow movements that require acceleration or deceleration
+MAX_SLOW_LINEAR_VELOCITY = 100 -- cm/s maximum linear velocity to be used on slow movements that require acceleration or deceleration
+MAX_SLOW_ACCELERATION = 2 -- cm/s^2 to be used on slow movements that require acceleration
+MAX_SLOW_DECELERATION = 2 -- cm/s^2 to be used on slow movements that require deceleration
+
+max_constant_velocity = MAX_SLOW_CONSTANT_VELOCITY -- cm/s to be used on movements that do not require acceleration or deceleration
+min_linear_velocity = MIN_SLOW_LINEAR_VELOCITY -- cm/s minimum linear velocity to be used on movements that require acceleration or deceleration
+max_linear_velocity = MAX_SLOW_LINEAR_VELOCITY -- cm/s maximum linear velocity to be used on movements that require acceleration or deceleration
+max_acceleration = MAX_SLOW_ACCELERATION -- cm/s^2
+max_deceleration = MAX_SLOW_DECELERATION -- cm/s^2
 
 is_moving = false -- used to check if a movement is in progress
 
@@ -15,6 +28,24 @@ current_velocity = 0
 current_move = nil
 
 move_array = {} -- array of movements to be done
+
+-- set bot parameters for fast movements
+function set_fast_velocity()
+    max_constant_velocity = MAX_FAST_CONSTANT_VELOCITY
+    min_linear_velocity = MIN_FAST_LINEAR_VELOCITY
+    max_linear_velocity = MAX_FAST_LINEAR_VELOCITY
+    max_acceleration = MAX_FAST_ACCELERATION
+    max_deceleration = MAX_FAST_DECELERATION
+end
+
+-- set bot parameters for slow movements
+function set_slow_velocity()
+    max_constant_velocity = MAX_SLOW_CONSTANT_VELOCITY
+    min_linear_velocity = MIN_SLOW_LINEAR_VELOCITY
+    max_linear_velocity = MAX_SLOW_LINEAR_VELOCITY
+    max_acceleration = MAX_SLOW_ACCELERATION
+    max_deceleration = MAX_SLOW_DECELERATION
+end
 
 -- Checks if the bot stopped based on distance sensors if available
 function is_stopped()
@@ -35,17 +66,17 @@ function straight()
     end
     current_velocity = math.abs(current_velocity)
     if distance_traveled == 0 then
-        current_velocity = MIN_LINEAR_VELOCITY
+        current_velocity = min_linear_velocity
     else
         if distance_traveled < distance_to_travel / 2 then
-            current_velocity = current_velocity + MAX_ACCELERATION
-            if current_velocity > MAX_LINEAR_VELOCITY then
-                current_velocity = MAX_LINEAR_VELOCITY
+            current_velocity = current_velocity + max_acceleration
+            if current_velocity > max_linear_velocity then
+                current_velocity = max_linear_velocity
             end
         elseif distance_traveled >= distance_to_travel / 2 then
-            current_velocity = current_velocity - MAX_DECELERATION
-            if current_velocity < MIN_LINEAR_VELOCITY then
-                current_velocity = MIN_LINEAR_VELOCITY
+            current_velocity = current_velocity - max_deceleration
+            if current_velocity < min_linear_velocity then
+                current_velocity = min_linear_velocity
             end
         end
         if distance_traveled >= distance_to_travel then
@@ -61,7 +92,7 @@ function turn()
     distance_to_travel = current_move.delta ~= nil and (current_move.delta * TURN_RADIUS) or TURN_LINEAR_LENGTH
     if not is_moving then
         distance_traveled = 0
-        current_velocity = MAX_CONSTANT_VELOCITY
+        current_velocity = max_constant_velocity
         is_moving = true
     else
         distance_traveled = distance_traveled + math.abs(robot.wheels.distance_left)
@@ -115,15 +146,11 @@ function move(movement, direction, delta, has_priority)
         else
             if is_stopped() then
                 row, col = get_current_row_and_column()
-                -- print("Current position x:" .. current_position.x .. " y:" .. current_position.y .. "    row:" .. row .. " col:" .. col .. " heading:" .. current_heading)
                 if is_calibration_needed() then
                     calibrate_position()
                 end
                 if #move_array > 0 then
                     current_move = table.remove(move_array, 1)
-                    -- _, basic_move = table_contains(BASIC_MOVE, current_move.movement)
-                    -- _, move_direction = table_contains(MOVE_DIRECTION, current_move.direction)
-                    -- print("Starting new move: " .. tostring(basic_move) .. " " .. tostring(move_direction))
                     update_position(current_move.movement, current_move.direction, current_move.delta)
                     current_move.movement()
                 end
@@ -176,3 +203,63 @@ end
 	    move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 5)
     end
 ]]
+
+--[[
+    This function optimizes an array of movements by converting consecutive movements in the same direction into a single movement
+    It takes an array of movements as input and returns an optimized array of movements
+    Optimization is done in that way:
+        - First it converts all COMPLEX_MOVE into BASIC_MOVE
+        - Then it converts all consecutive BASIC_MOVE in the same direction into a single BASIC_MOVE
+]]
+function optimize_movements(movements)
+    local basic_movements = {}
+    for i, movement in ipairs(movements) do
+        if movement.movement == COMPLEX_MOVE.N_STRAIGHT then
+            for j = 1, movement.delta do
+                table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = movement.direction, delta = movement.delta * MAZE_UNIT_LENGHT})
+            end
+        elseif movement.movement == COMPLEX_MOVE.FLIP then
+            table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi / 2})
+            table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi / 2})
+        elseif movement.movement == COMPLEX_MOVE.FLIP_AND_FORWARD then
+            table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi / 2})
+            table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi / 2})
+            table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGHT})
+        elseif movement.movement == COMPLEX_MOVE.TURN_AND_FORWARD then
+            table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = movement.direction, delta = math.pi / 2})
+            table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGHT})
+        elseif movement.movement == BASIC_MOVE.STRAIGHT then
+            table.insert(basic_movements, movement)
+        elseif movement.movement == BASIC_MOVE.TURN then
+            table.insert(basic_movements, movement)
+        end
+    end
+
+    local optimized_movements = {}
+    local movement = nil
+
+    for i, basic_movement in ipairs(basic_movements) do
+        if movement and movement.movement == basic_movement.movement and movement.direction == basic_movement.direction then
+            if basic_movement.delta then
+                movement.delta = movement.delta + basic_movement.delta
+            else
+                if basic_movement.movement == BASIC_MOVE.STRAIGHT then
+                    movement.delta = movement.delta + MAZE_UNIT_LENGHT
+                else
+                    movement.delta = movement.delta + math.pi / 2
+                end
+            end
+        else
+            if movement then
+                table.insert(optimized_movements, movement)
+            end
+            movement = basic_movement
+        end
+
+        if i == #basic_movements then
+            table.insert(optimized_movements, movement)
+        end
+    end
+
+    return optimized_movements
+end
