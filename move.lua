@@ -11,8 +11,8 @@ MAX_FAST_DECELERATION = 4 -- cm/s^2 to be used on fast movements that require de
 MAX_SLOW_CONSTANT_VELOCITY = 50 -- cm/s to be used on slow movements that do not require acceleration or deceleration
 MIN_SLOW_LINEAR_VELOCITY = 50 -- cm/s minimum linear velocity to be used on slow movements that require acceleration or deceleration
 MAX_SLOW_LINEAR_VELOCITY = 100 -- cm/s maximum linear velocity to be used on slow movements that require acceleration or deceleration
-MAX_SLOW_ACCELERATION = 2 -- cm/s^2 to be used on slow movements that require acceleration
-MAX_SLOW_DECELERATION = 2 -- cm/s^2 to be used on slow movements that require deceleration
+MAX_SLOW_ACCELERATION = 4 -- cm/s^2 to be used on slow movements that require acceleration
+MAX_SLOW_DECELERATION = 1 -- cm/s^2 to be used on slow movements that require deceleration
 
 max_constant_velocity = MAX_SLOW_CONSTANT_VELOCITY -- cm/s to be used on movements that do not require acceleration or deceleration
 min_linear_velocity = MIN_SLOW_LINEAR_VELOCITY -- cm/s minimum linear velocity to be used on movements that require acceleration or deceleration
