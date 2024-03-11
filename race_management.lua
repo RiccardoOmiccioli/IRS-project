@@ -18,7 +18,7 @@ function race_management.run()
 		race_management.check_penalty()
 	end
 	if is_floor_detection_enabled then
-		Check floor colour
+		-- Check floor colour
 		check = floor_detector.check()
 
 		if check == floor_type.FINISH then
