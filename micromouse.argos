@@ -667,9 +667,9 @@
     <qt-opengl lua_editor="false">
       <camera>
         <placements>
-          <placement index="0" position=" 0, -6, 8" look_at=" 0, 0, 0" lens_focal_length="35" />
-          <placement index="1" position=" 0, -0.1, 8" look_at=" 0, 0, 0" lens_focal_length="25" />
-          <placement index="2" position="-3.75, 3.74, 4" look_at=" -3.75, 3.75, 0" lens_focal_length="35" />
+          <placement index="0" position=" 0, -0.1, 8" look_at=" 0, 0, 0" lens_focal_length="25" />
+          <placement index="1" position="-3.75, 3.74, 4" look_at=" -3.75, 3.75, 0" lens_focal_length="35" />
+          <placement index="2" position=" 0, -6, 8" look_at=" 0, 0, 0" lens_focal_length="35" />
         </placements>
       </camera>
     </qt-opengl>
