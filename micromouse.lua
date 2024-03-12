@@ -6,6 +6,7 @@ require "proximity"
 
 -- Global variables
 depth_first = require "depth_first"
+breadth_first = require "breadth_first"
 random_explore = require "random_explore"
 race_management = require "race_management"
 
@@ -19,39 +20,10 @@ function init()
 	robot.leds.set_single_color(9, "green")
 	robot.leds.set_single_color(10, "green")
 
---[[
-	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 5)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 5)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 4)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.RIGHT)
-	move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 3)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
---]]
-
 	stopwatch.init()
-	-- depth_first.init()
-	random_explore.init()
+	depth_first.init()
+	-- random_explore.init()
+	-- breadth_first.init()
 end
 
 
@@ -62,12 +34,12 @@ function step()
 	is_moving, remaining_moves = move()
 	if not is_moving then
 		if remaining_moves == 0 then
-			-- depth_first.algorithm()
-
 			print("--------------------SET SLOW VELOCITY-------------------")
 			set_slow_velocity() -- set default velocity to slow after a list of movements is done
 
-			random_explore.algorithm()
+			depth_first.algorithm()
+			-- random_explore.algorithm()
+			-- breadth_first.algorithm()
 		end
 	end
 
