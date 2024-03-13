@@ -11,6 +11,8 @@ local parent = {row = nil, column = nil}
 function depth_first.init()
     maze = maze_data.new()
     --maze.update_weight(1, 1, 1) -- Initialize first cell weight
+    math.randomseed(os.time())
+
 end
 
 function depth_first.algorithm()
@@ -25,7 +27,7 @@ function depth_first.algorithm()
         -- check walls for neighbours
         wall_distances = get_all_distances()
         for key, value in pairs(wall_distances) do
-            if value == -2 or value > 20 then
+            if value == -2 or value > 25 then
                 local row_temp, column_temp = calculate_neighbour_cell(maze, current_row, current_col, robot_orientation, key)
 
                 -- Update neighbours weight
