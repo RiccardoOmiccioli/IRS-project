@@ -49,18 +49,7 @@ function depth_first.algorithm()
         end
     end
 
-    local not_visited_neighbours ={}
-
-    -- Create a table of not visited neighbour
-    for i, cell in ipairs(maze) do
-        for j, neighbour in ipairs(reachable_neighbours) do
-            if cell.row == neighbour.row and cell.column == neighbour.column then
-                if not cell.visited then
-                    table.insert(not_visited_neighbours, cell)
-                end
-            end
-        end
-    end
+    local not_visited_neighbours = depth_first.not_visited_neighbours_cells(reachable_neighbours)
 
     local destination
 
@@ -130,6 +119,18 @@ function depth_first.visited_filter()
     end
     return temp_table
 end
+
+function depth_first.not_visited_neighbours_cells(reachable_neighbours)
+    local all_reachable_neighbours = {}
+    for _, neighbour in ipairs(reachable_neighbours) do
+        local n = maze.get_cell(neighbour.row, neighbour.column)
+        if not n.visited then
+            table.insert(all_reachable_neighbours, n)
+        end
+    end
+    return all_reachable_neighbours
+end
+
 
 function depth_first.not_visited_filter()
     local temp_table = {}
