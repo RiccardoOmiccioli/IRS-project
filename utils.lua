@@ -1,3 +1,15 @@
+-- check walls near current cell to find reachable neighbours
+function check_walls_update_neighbours(maze, current_row, current_col)
+    local robot_orientation = get_current_heading()
+
+    wall_distances = get_all_distances()
+    for key, value in pairs(wall_distances) do
+        if value == -2 or value > 25 then
+            calculate_neighbour_cell(maze, current_row, current_col, robot_orientation, key)
+        end
+    end
+end
+
 -- calculate neighbour cell of current cell, based on robot orientation
 -- then update current cell reachable neighbours list
 function calculate_neighbour_cell(maze, current_row, current_col, robot_orientation, key)
@@ -46,6 +58,4 @@ function calculate_neighbour_cell(maze, current_row, current_col, robot_orientat
     end
 
     maze.update_reachable_neighbours(current_row, current_col, {row = row_temp, column = column_temp})
-
-    return row_temp, column_temp
 end

@@ -24,26 +24,18 @@ function flood_fill.init()
 end
 
 function flood_fill.algorithm()
-    robot_orientation = get_current_heading()
     current_row, current_col = get_current_row_and_column()
-    local current_cell = maze.get_cell(current_row, current_col)
-
-    if not current_cell.visited then
+    
+    if not maze.get_cell(current_row, current_col).visited then
         
         maze.update_visited(current_row, current_col, true)
         maze.update_parent(current_row, current_col, {row = parent.row, column = parent.column})
 
-        -- check walls for neighbours
-        wall_distances = get_all_distances()
-        for key, value in pairs(wall_distances) do
-            if value == -2 or value > 25 then
-                local row_temp, column_temp = calculate_neighbour_cell(maze, current_row, current_col, robot_orientation, key)
-            end
-        end
+        check_walls_update_neighbours(maze, current_row, current_col)
     end
 
     -- for each reachable_neighbour that is not visited update parent with current cell and add each in queue
-     local reachable_neighbours = current_cell.reachable_neighbours
+     local reachable_neighbours = maze.get_cell(current_row, current_col).reachable_neighbours
 
     -- for each reachable_neighbour that is not visited update parent with current cell
     for i, neighbour in ipairs(reachable_neighbours) do
@@ -51,7 +43,8 @@ function flood_fill.algorithm()
             maze.update_parent(neighbour.row, neighbour.column, {row = current_row, column = current_col})
         end
     end
-
+    
+    local current_cell = maze.get_cell(current_row, current_col)
     local destination
     
     --DEMO
