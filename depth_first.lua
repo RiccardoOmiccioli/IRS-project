@@ -23,14 +23,7 @@ function depth_first.algorithm()
         check_walls_update_neighbours(maze, current_row, current_col)
     end
 
-    local reachable_neighbours = maze.get_cell(current_row, current_col).reachable_neighbours
-
-    -- for each reachable_neighbour that is not visited update parent with current cell
-    for i, neighbour in ipairs(reachable_neighbours) do
-        if not maze.get_cell(neighbour.row, neighbour.column).visited then
-           maze.update_parent(neighbour.row, neighbour.column, {row = current_row, column = current_col})
-        end
-    end
+    local reachable_neighbours = update_parent_not_visited_reachable_neighbours(maze, current_row, current_col)
 
     local not_visited_neighbours = depth_first.not_visited_neighbours_cells(reachable_neighbours)
 
@@ -44,11 +37,7 @@ function depth_first.algorithm()
         destination = maze.get_cell(parent_row, parent_column)
     end
   
-    -- Calculate path and move
-    local movements = calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
-    for _, movement in ipairs(movements) do
-       move(movement.movement, movement.direction, movement.delta)
-    end
+    calculate_path_and_move(maze, current_row, current_col, destination)
 
     -- Debug
     -- maze.print_maze(maze, trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
