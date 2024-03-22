@@ -36,7 +36,7 @@
   <!-- *********************** -->
   <arena size="8, 8, 1" center="0,0,0.5">
 <!--maze background start-->
-<floor id="f" source="image" path="maze_full_background.png"/>
+<floor id="f" source="image" path="maze_half_background.png"/>
 <!--maze background end-->
 
 <!--maze start-->
@@ -53,1336 +53,367 @@
   <body position="-3.25,4.00,0" orientation="0,0,0" />
 </box>
 <box id="wall5" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,4.00,0" orientation="0,0,0" />
+  <body position="-3.25,3.50,0" orientation="0,0,0" />
 </box>
 <box id="wall6" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,4.00,0" orientation="0,0,0" />
+  <body position="-2.75,4.00,0" orientation="0,0,0" />
 </box>
-<box id="wall7" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,3.50,0" orientation="0,0,0" />
+<box id="wall7" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,3.75,0" orientation="0,0,0" />
 </box>
-<box id="wall8" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,4.00,0" orientation="0,0,0" />
+<box id="wall8" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,3.75,0" orientation="0,0,0" />
 </box>
 <box id="wall9" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,4.00,0" orientation="0,0,0" />
+  <body position="-2.25,4.00,0" orientation="0,0,0" />
 </box>
-<box id="wall10" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,3.50,0" orientation="0,0,0" />
+<box id="wall10" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.00,3.75,0" orientation="0,0,0" />
 </box>
-<box id="wall11" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,4.00,0" orientation="0,0,0" />
+<box id="wall11" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.00,3.75,0" orientation="0,0,0" />
 </box>
 <box id="wall12" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,4.00,0" orientation="0,0,0" />
+  <body position="-1.75,4.00,0" orientation="0,0,0" />
 </box>
 <box id="wall13" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,3.50,0" orientation="0,0,0" />
+  <body position="-1.75,3.50,0" orientation="0,0,0" />
 </box>
 <box id="wall14" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,4.00,0" orientation="0,0,0" />
+  <body position="-1.25,4.00,0" orientation="0,0,0" />
 </box>
-<box id="wall15" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,4.00,0" orientation="0,0,0" />
+<box id="wall15" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.00,3.75,0" orientation="0,0,0" />
 </box>
-<box id="wall16" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,4.00,0" orientation="0,0,0" />
+<box id="wall16" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.00,3.75,0" orientation="0,0,0" />
 </box>
 <box id="wall17" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,4.00,0" orientation="0,0,0" />
+  <body position="-0.75,4.00,0" orientation="0,0,0" />
 </box>
 <box id="wall18" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,4.00,0" orientation="0,0,0" />
+  <body position="-0.25,4.00,0" orientation="0,0,0" />
 </box>
-<box id="wall19" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,4.00,0" orientation="0,0,0" />
+<box id="wall19" size="0.05, 0.5, 0.2" movable="false">
+  <body position="0.00,3.75,0" orientation="0,0,0" />
 </box>
-<box id="wall20" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall21" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall22" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall23" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall20" size="0.05, 0.5, 0.2" movable="false">
   <body position="-4.00,3.25,0" orientation="0,0,0" />
 </box>
-<box id="wall24" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall21" size="0.5, 0.05, 0.2" movable="false">
   <body position="-3.75,3.50,0" orientation="0,0,0" />
 </box>
+<box id="wall22" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-3.25,3.50,0" orientation="0,0,0" />
+</box>
+<box id="wall23" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.00,3.25,0" orientation="0,0,0" />
+</box>
+<box id="wall24" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.00,3.25,0" orientation="0,0,0" />
+</box>
 <box id="wall25" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,3.25,0" orientation="0,0,0" />
+  <body position="-2.00,3.25,0" orientation="0,0,0" />
 </box>
-<box id="wall26" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,3.00,0" orientation="0,0,0" />
+<box id="wall26" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.00,3.25,0" orientation="0,0,0" />
 </box>
-<box id="wall27" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,3.25,0" orientation="0,0,0" />
+<box id="wall27" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-1.75,3.50,0" orientation="0,0,0" />
 </box>
 <box id="wall28" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,3.25,0" orientation="0,0,0" />
+  <body position="-1.00,3.25,0" orientation="0,0,0" />
 </box>
-<box id="wall29" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,3.25,0" orientation="0,0,0" />
+<box id="wall29" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-1.25,3.00,0" orientation="0,0,0" />
 </box>
-<box id="wall30" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,3.50,0" orientation="0,0,0" />
+<box id="wall30" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.00,3.25,0" orientation="0,0,0" />
 </box>
-<box id="wall31" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,3.00,0" orientation="0,0,0" />
+<box id="wall31" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-0.50,3.25,0" orientation="0,0,0" />
 </box>
 <box id="wall32" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,3.50,0" orientation="0,0,0" />
+  <body position="-0.75,3.00,0" orientation="0,0,0" />
 </box>
 <box id="wall33" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,3.25,0" orientation="0,0,0" />
+  <body position="-0.50,3.25,0" orientation="0,0,0" />
 </box>
-<box id="wall34" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,3.00,0" orientation="0,0,0" />
+<box id="wall34" size="0.05, 0.5, 0.2" movable="false">
+  <body position="0.00,3.25,0" orientation="0,0,0" />
 </box>
 <box id="wall35" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall36" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall37" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall38" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall39" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall40" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall41" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall42" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall43" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall44" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall45" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall46" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall47" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall48" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall49" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall50" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall51" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall52" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall53" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall54" size="0.05, 0.5, 0.2" movable="false">
   <body position="-4.00,2.75,0" orientation="0,0,0" />
 </box>
-<box id="wall55" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,2.50,0" orientation="0,0,0" />
+<box id="wall36" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,2.75,0" orientation="0,0,0" />
 </box>
-<box id="wall56" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,3.00,0" orientation="0,0,0" />
+<box id="wall37" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,2.75,0" orientation="0,0,0" />
 </box>
-<box id="wall57" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,2.75,0" orientation="0,0,0" />
+<box id="wall38" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-3.25,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall58" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall59" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall39" size="0.05, 0.5, 0.2" movable="false">
   <body position="-2.50,2.75,0" orientation="0,0,0" />
 </box>
-<box id="wall60" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall40" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-2.75,2.50,0" orientation="0,0,0" />
+</box>
+<box id="wall41" size="0.05, 0.5, 0.2" movable="false">
   <body position="-2.50,2.75,0" orientation="0,0,0" />
 </box>
-<box id="wall61" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall62" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall42" size="0.5, 0.05, 0.2" movable="false">
   <body position="-2.25,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall63" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall64" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall65" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall43" size="0.5, 0.05, 0.2" movable="false">
   <body position="-1.25,3.00,0" orientation="0,0,0" />
 </box>
-<box id="wall66" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,2.50,0" orientation="0,0,0" />
+<box id="wall44" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-0.75,3.00,0" orientation="0,0,0" />
 </box>
-<box id="wall67" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,2.75,0" orientation="0,0,0" />
+<box id="wall45" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-0.75,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall68" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall69" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall46" size="0.05, 0.5, 0.2" movable="false">
   <body position="0.00,2.75,0" orientation="0,0,0" />
 </box>
-<box id="wall70" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall47" size="0.5, 0.05, 0.2" movable="false">
   <body position="-0.25,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall71" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall72" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall73" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall74" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall75" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall76" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall77" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall78" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall79" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall80" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall81" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall82" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall83" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall84" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall85" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall86" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall87" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall88" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall89" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall48" size="0.05, 0.5, 0.2" movable="false">
   <body position="-4.00,2.25,0" orientation="0,0,0" />
 </box>
-<box id="wall90" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,2.50,0" orientation="0,0,0" />
+<box id="wall49" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-3.25,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall91" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,2.25,0" orientation="0,0,0" />
+<box id="wall50" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-3.25,2.00,0" orientation="0,0,0" />
 </box>
-<box id="wall92" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,2.25,0" orientation="0,0,0" />
+<box id="wall51" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-2.75,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall93" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,2.00,0" orientation="0,0,0" />
+<box id="wall52" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,2.25,0" orientation="0,0,0" />
 </box>
-<box id="wall94" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall53" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,2.25,0" orientation="0,0,0" />
+</box>
+<box id="wall54" size="0.5, 0.05, 0.2" movable="false">
   <body position="-2.25,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall95" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,2.00,0" orientation="0,0,0" />
+<box id="wall55" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,2.25,0" orientation="0,0,0" />
 </box>
-<box id="wall96" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,2.00,0" orientation="0,0,0" />
+<box id="wall56" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,2.25,0" orientation="0,0,0" />
 </box>
-<box id="wall97" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,2.50,0" orientation="0,0,0" />
+<box id="wall57" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.00,2.25,0" orientation="0,0,0" />
 </box>
-<box id="wall98" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,2.00,0" orientation="0,0,0" />
+<box id="wall58" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.00,2.25,0" orientation="0,0,0" />
 </box>
-<box id="wall99" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall59" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-0.75,2.50,0" orientation="0,0,0" />
+</box>
+<box id="wall60" size="0.5, 0.05, 0.2" movable="false">
   <body position="-0.75,2.00,0" orientation="0,0,0" />
 </box>
-<box id="wall100" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall61" size="0.5, 0.05, 0.2" movable="false">
   <body position="-0.25,2.50,0" orientation="0,0,0" />
 </box>
-<box id="wall101" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,2.00,0" orientation="0,0,0" />
+<box id="wall62" size="0.05, 0.5, 0.2" movable="false">
+  <body position="0.00,2.25,0" orientation="0,0,0" />
 </box>
-<box id="wall102" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall103" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall104" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall105" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall106" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall107" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall108" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall109" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall110" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall111" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall63" size="0.05, 0.5, 0.2" movable="false">
   <body position="-4.00,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall112" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,1.50,0" orientation="0,0,0" />
+<box id="wall64" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall113" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,1.50,0" orientation="0,0,0" />
+<box id="wall65" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall114" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,2.00,0" orientation="0,0,0" />
+<box id="wall66" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-3.25,2.00,0" orientation="0,0,0" />
 </box>
-<box id="wall115" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,1.50,0" orientation="0,0,0" />
+<box id="wall67" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.00,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall116" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,2.00,0" orientation="0,0,0" />
+<box id="wall68" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.00,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall117" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall69" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,1.75,0" orientation="0,0,0" />
+</box>
+<box id="wall70" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,1.75,0" orientation="0,0,0" />
+</box>
+<box id="wall71" size="0.5, 0.05, 0.2" movable="false">
   <body position="-2.25,1.50,0" orientation="0,0,0" />
 </box>
-<box id="wall118" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,2.00,0" orientation="0,0,0" />
+<box id="wall72" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall119" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall73" size="0.5, 0.05, 0.2" movable="false">
   <body position="-1.75,1.50,0" orientation="0,0,0" />
 </box>
-<box id="wall120" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,2.00,0" orientation="0,0,0" />
+<box id="wall74" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall121" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall75" size="0.5, 0.05, 0.2" movable="false">
   <body position="-1.25,1.50,0" orientation="0,0,0" />
 </box>
-<box id="wall122" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall76" size="0.5, 0.05, 0.2" movable="false">
   <body position="-0.75,2.00,0" orientation="0,0,0" />
 </box>
-<box id="wall123" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,1.50,0" orientation="0,0,0" />
+<box id="wall77" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-0.50,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall124" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,2.00,0" orientation="0,0,0" />
+<box id="wall78" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-0.50,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall125" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall79" size="0.05, 0.5, 0.2" movable="false">
   <body position="0.00,1.75,0" orientation="0,0,0" />
 </box>
-<box id="wall126" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall127" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall128" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall129" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall130" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall131" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall132" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall133" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall134" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall135" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall136" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall137" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall138" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall139" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall140" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall141" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall142" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall80" size="0.05, 0.5, 0.2" movable="false">
   <body position="-4.00,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall143" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,1.50,0" orientation="0,0,0" />
+<box id="wall81" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall144" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,1.00,0" orientation="0,0,0" />
+<box id="wall82" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall145" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,1.50,0" orientation="0,0,0" />
+<box id="wall83" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall146" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,1.50,0" orientation="0,0,0" />
+<box id="wall84" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.50,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall147" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall148" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall85" size="0.5, 0.05, 0.2" movable="false">
   <body position="-2.25,1.50,0" orientation="0,0,0" />
 </box>
-<box id="wall149" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall150" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall86" size="0.5, 0.05, 0.2" movable="false">
   <body position="-1.75,1.50,0" orientation="0,0,0" />
 </box>
-<box id="wall151" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,1.00,0" orientation="0,0,0" />
+<box id="wall87" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall152" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall88" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,1.25,0" orientation="0,0,0" />
+</box>
+<box id="wall89" size="0.5, 0.05, 0.2" movable="false">
   <body position="-1.25,1.50,0" orientation="0,0,0" />
 </box>
-<box id="wall153" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,1.00,0" orientation="0,0,0" />
+<box id="wall90" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-0.50,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall154" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall155" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall91" size="0.5, 0.05, 0.2" movable="false">
   <body position="-0.75,1.00,0" orientation="0,0,0" />
 </box>
-<box id="wall156" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall92" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-0.50,1.25,0" orientation="0,0,0" />
+</box>
+<box id="wall93" size="0.05, 0.5, 0.2" movable="false">
   <body position="0.00,1.25,0" orientation="0,0,0" />
 </box>
-<box id="wall157" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall158" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall159" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall160" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall161" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall162" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall163" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall164" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall165" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall166" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall167" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall168" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall169" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall170" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall171" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall172" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall94" size="0.05, 0.5, 0.2" movable="false">
   <body position="-4.00,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall173" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,1.00,0" orientation="0,0,0" />
+<box id="wall95" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall174" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,0.50,0" orientation="0,0,0" />
+<box id="wall96" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall175" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall97" size="0.05, 0.5, 0.2" movable="false">
   <body position="-3.00,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall176" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall98" size="0.05, 0.5, 0.2" movable="false">
   <body position="-3.00,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall177" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,1.00,0" orientation="0,0,0" />
+<box id="wall99" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-2.75,0.50,0" orientation="0,0,0" />
 </box>
-<box id="wall178" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall179" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall100" size="0.05, 0.5, 0.2" movable="false">
   <body position="-2.00,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall180" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall101" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-2.25,0.50,0" orientation="0,0,0" />
+</box>
+<box id="wall102" size="0.05, 0.5, 0.2" movable="false">
   <body position="-2.00,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall181" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,1.00,0" orientation="0,0,0" />
+<box id="wall103" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall182" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,1.00,0" orientation="0,0,0" />
+<box id="wall104" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.50,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall183" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall105" size="0.5, 0.05, 0.2" movable="false">
   <body position="-0.75,1.00,0" orientation="0,0,0" />
 </box>
-<box id="wall184" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall106" size="0.05, 0.5, 0.2" movable="false">
   <body position="-0.50,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall185" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall186" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall107" size="0.05, 0.5, 0.2" movable="false">
   <body position="-0.50,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall187" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall108" size="0.05, 0.5, 0.2" movable="false">
   <body position="0.00,0.75,0" orientation="0,0,0" />
 </box>
-<box id="wall188" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall189" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall190" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall191" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall192" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall193" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall194" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall195" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall196" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall197" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall198" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall199" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall200" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall201" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall202" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall203" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall204" size="0.05, 0.5, 0.2" movable="false">
+<box id="wall109" size="0.05, 0.5, 0.2" movable="false">
   <body position="-4.00,0.25,0" orientation="0,0,0" />
 </box>
-<box id="wall205" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,0.50,0" orientation="0,0,0" />
+<box id="wall110" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,0.25,0" orientation="0,0,0" />
 </box>
-<box id="wall206" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,0.25,0" orientation="0,0,0" />
+<box id="wall111" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-3.75,0.00,0" orientation="0,0,0" />
 </box>
-<box id="wall207" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,0.25,0" orientation="0,0,0" />
+<box id="wall112" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-3.50,0.25,0" orientation="0,0,0" />
 </box>
-<box id="wall208" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,0.25,0" orientation="0,0,0" />
+<box id="wall113" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-3.25,0.00,0" orientation="0,0,0" />
 </box>
-<box id="wall209" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,0.25,0" orientation="0,0,0" />
+<box id="wall114" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-2.75,0.50,0" orientation="0,0,0" />
 </box>
-<box id="wall210" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall115" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-2.75,0.00,0" orientation="0,0,0" />
+</box>
+<box id="wall116" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.00,0.25,0" orientation="0,0,0" />
+</box>
+<box id="wall117" size="0.5, 0.05, 0.2" movable="false">
   <body position="-2.25,0.00,0" orientation="0,0,0" />
 </box>
-<box id="wall211" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,0.25,0" orientation="0,0,0" />
+<box id="wall118" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-2.00,0.25,0" orientation="0,0,0" />
 </box>
-<box id="wall212" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall119" size="0.5, 0.05, 0.2" movable="false">
   <body position="-1.75,0.00,0" orientation="0,0,0" />
 </box>
-<box id="wall213" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,0.25,0" orientation="0,0,0" />
+<box id="wall120" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.00,0.25,0" orientation="0,0,0" />
 </box>
-<box id="wall214" size="0.5, 0.05, 0.2" movable="false">
+<box id="wall121" size="0.5, 0.05, 0.2" movable="false">
   <body position="-1.25,0.00,0" orientation="0,0,0" />
 </box>
-<box id="wall215" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,0.50,0" orientation="0,0,0" />
+<box id="wall122" size="0.05, 0.5, 0.2" movable="false">
+  <body position="-1.00,0.25,0" orientation="0,0,0" />
 </box>
-<box id="wall216" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,0.25,0" orientation="0,0,0" />
+<box id="wall123" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-0.75,0.00,0" orientation="0,0,0" />
 </box>
-<box id="wall217" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,0.25,0" orientation="0,0,0" />
+<box id="wall124" size="0.05, 0.5, 0.2" movable="false">
+  <body position="0.00,0.25,0" orientation="0,0,0" />
 </box>
-<box id="wall218" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall219" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall220" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall221" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall222" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall223" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall224" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall225" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall226" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall227" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall228" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall229" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall230" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall231" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall232" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall233" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall234" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall235" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall236" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall237" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall238" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall239" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall240" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall241" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall242" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall243" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall244" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall245" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall246" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall247" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall248" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall249" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall250" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall251" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall252" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall253" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall254" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall255" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall256" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall257" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall258" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall259" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall260" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall261" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall262" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall263" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall264" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,0.00,0" orientation="0,0,0" />
-</box>
-<box id="wall265" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-0.25,0" orientation="0,0,0" />
-</box>
-<box id="wall266" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall267" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall268" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall269" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall270" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall271" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.00,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall272" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall273" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall274" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall275" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall276" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall277" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall278" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall279" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall280" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall281" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall282" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall283" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall284" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall285" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall286" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall287" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall288" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall289" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall290" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall291" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,-0.50,0" orientation="0,0,0" />
-</box>
-<box id="wall292" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-0.75,0" orientation="0,0,0" />
-</box>
-<box id="wall293" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall294" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall295" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall296" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall297" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall298" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall299" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall300" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.00,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall301" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.00,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall302" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall303" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall304" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall305" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall306" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall307" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall308" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall309" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall310" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall311" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall312" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall313" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall314" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall315" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall316" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall317" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall318" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,-1.00,0" orientation="0,0,0" />
-</box>
-<box id="wall319" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall320" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall321" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall322" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-1.25,0" orientation="0,0,0" />
-</box>
-<box id="wall323" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall324" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall325" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall326" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall327" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall328" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall329" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall330" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall331" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall332" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall333" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall334" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall335" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall336" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall337" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall338" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall339" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall340" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall341" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-1.50,0" orientation="0,0,0" />
-</box>
-<box id="wall342" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall343" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall344" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall345" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-1.75,0" orientation="0,0,0" />
-</box>
-<box id="wall346" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall347" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall348" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall349" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall350" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall351" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,-2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall352" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall353" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall354" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall355" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall356" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall357" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall358" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall359" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall360" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall361" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-0.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall362" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall363" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall364" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall365" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall366" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall367" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall368" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall369" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall370" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall371" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall372" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall373" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-2.00,0" orientation="0,0,0" />
-</box>
-<box id="wall374" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall375" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall376" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.50,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall377" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-2.25,0" orientation="0,0,0" />
-</box>
-<box id="wall378" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall379" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall380" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall381" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall382" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,-2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall383" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall384" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall385" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall386" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall387" size="0.05, 0.5, 0.2" movable="false">
-  <body position="0.00,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall388" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall389" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall390" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall391" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall392" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.50,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall393" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall394" size="0.05, 0.5, 0.2" movable="false">
-  <body position="3.00,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall395" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-2.50,0" orientation="0,0,0" />
-</box>
-<box id="wall396" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall397" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-2.75,0" orientation="0,0,0" />
-</box>
-<box id="wall398" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall399" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall400" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-3.50,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall401" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall402" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall403" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall404" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.50,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall405" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.00,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall406" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-2.00,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall407" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall408" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall409" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall410" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall411" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall412" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall413" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall414" size="0.05, 0.5, 0.2" movable="false">
-  <body position="2.00,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall415" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall416" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-3.00,0" orientation="0,0,0" />
-</box>
-<box id="wall417" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall418" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-3.25,0" orientation="0,0,0" />
-</box>
-<box id="wall419" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-4.00,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall420" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.75,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall421" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-3.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall422" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall423" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.75,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall424" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-2.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall425" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall426" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.75,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall427" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.50,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall428" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall429" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-1.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall430" size="0.05, 0.5, 0.2" movable="false">
-  <body position="-1.00,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall431" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.75,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall432" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall433" size="0.5, 0.05, 0.2" movable="false">
-  <body position="-0.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall434" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall435" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall436" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall437" size="0.5, 0.05, 0.2" movable="false">
-  <body position="0.75,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall438" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall439" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall440" size="0.05, 0.5, 0.2" movable="false">
-  <body position="1.50,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall441" size="0.5, 0.05, 0.2" movable="false">
-  <body position="1.75,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall442" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall443" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall444" size="0.5, 0.05, 0.2" movable="false">
-  <body position="2.75,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall445" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-3.50,0" orientation="0,0,0" />
-</box>
-<box id="wall446" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.25,-4.00,0" orientation="0,0,0" />
-</box>
-<box id="wall447" size="0.05, 0.5, 0.2" movable="false">
-  <body position="4.00,-3.75,0" orientation="0,0,0" />
-</box>
-<box id="wall448" size="0.5, 0.05, 0.2" movable="false">
-  <body position="3.75,-4.00,0" orientation="0,0,0" />
+<box id="wall125" size="0.5, 0.05, 0.2" movable="false">
+  <body position="-0.25,0.00,0" orientation="0,0,0" />
 </box>
 <!--maze end-->
 

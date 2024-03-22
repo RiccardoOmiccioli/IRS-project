@@ -1,6 +1,6 @@
 local maze_data = {}
 MIN_ROW_COL_POS = 1
-MAX_ROW_COL_POS = 16
+MAX_ROW_COL_POS = 8
 
 --[[
     data structure representing the maze
