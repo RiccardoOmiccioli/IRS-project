@@ -89,3 +89,12 @@ function calculate_path_and_move(maze, current_row, current_col, destination)
         move(movement.movement, movement.direction, movement.delta)
     end
 end
+
+
+-- To be called when the robot is on the finish zone, get the fastest path from start
+function get_fastest_path_to_finish(algorithm)
+    local maze = algorithm.get_maze_data()
+    local start = maze.get_cell(MIN_ROW_COL_POS, MIN_ROW_COL_POS)
+    local finish = algorithm.get_destination()
+    return trace_path_to_target(start, finish, maze)
+end

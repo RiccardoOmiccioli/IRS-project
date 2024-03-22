@@ -8,6 +8,7 @@ local breadth_first = {}
 local cells_queue
 local maze
 local parent = {row = nil, column = nil}
+local destination = nil
 
 function breadth_first.init()
     cells_queue = queue.new()
@@ -28,7 +29,7 @@ function breadth_first.execute()
     update_parent_not_visited_reachable_neighbours(maze, current_row, current_col, cells_queue)
 
     if not cells_queue:isEmpty() then
-        local destination = cells_queue:dequeue()
+        destination = cells_queue:dequeue()
 
         calculate_path_and_move(maze, current_row, current_col, destination)
 
@@ -40,6 +41,14 @@ function breadth_first.execute()
     parent.row, parent.column = current_row, current_col
 end
 
+
+function breadth_first.get_destination()
+    return destination
+end
+
+function breadth_first.get_maze_data()
+    return maze
+end
 
 
 return breadth_first

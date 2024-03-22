@@ -13,7 +13,6 @@ local available_algorithms = {DEPTH_FIRST = "depth_first", BREADTH_FIRST = "brea
 -- SELECT ALGORITHM --
 local algorithm = require(available_algorithms.FLOOD_FILL)
 
-local is_reset = false
 local race
 local final_path
 
@@ -29,7 +28,6 @@ function init()
 	
 	algorithm.init()
 
-	is_reset = false
 	race = race_states.STOP
 
 end
@@ -59,7 +57,7 @@ function step()
 	-- When it stops get fastest path
 	if race == race_states.STOP then
 		print("STOP")
-		final_path = algorithm.get_fastest_path_to_finish(1,1)
+		final_path = get_fastest_path_to_finish(algorithm)
 		--print_path(final_path)
 	end
 
@@ -103,7 +101,7 @@ function destroy()
    -- put your code here
 end
 
-  
+
 function init_robot()
 
 	start_distance_scanner()
@@ -113,7 +111,8 @@ function init_robot()
 	robot.leds.set_single_color(9, "green")
 	robot.leds.set_single_color(10, "green")
 end
-  
+
+
 function load_fast_path()
 	--print("execute fast travel")
 	set_fast_velocity()

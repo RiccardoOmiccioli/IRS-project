@@ -11,8 +11,7 @@ local maze_flood
 local flood_queue
 local parent = {row = nil, column = nil}
 local path_to_destinaton
-local current_row, current_col
-local destination
+local destination = nil
 
 
 function flood_fill.init()
@@ -114,7 +113,7 @@ function flood_fill.perform_flood_fill(current_cell)
     end
 end
 
--- DEMO
+-- DEMO of maze exploration
 --[[ function flood_fill.maze_exploration(current_cell)
     -- change destination to bottom right angle for exploration
     if current_cell.weight <= 0 and not arrived_destination then
@@ -168,25 +167,16 @@ function flood_fill.get_reachable_neighbours(cell)
     local reach_table
     if cell.visited then
         reach_table = flood_fill.reachable_neighbours_cells(cell.reachable_neighbours)
-        --print("------ VISITED n: " .. #reach_table)
-
     else
-        -- check if cell is present in neighbour neighbours
-        reach_table = flood_fill.cell_is_neighbour(cell)
-        --print("------ NOT VISITED n: " .. #reach_table)
-
+        reach_table = flood_fill.not_visited_cell_neighbours(cell)
     end
-
-    --[[ for _, v in ipairs(reach_table) do
-        print("-------- REACH  R: " .. v.row .. " | C: " .. v.column)
-    end ]]
 
     return reach_table
 end
 
 
--- Get the cells 
-function flood_fill.cell_is_neighbour(cell)
+-- Get a table of neighbours of a not visited cell
+function flood_fill.not_visited_cell_neighbours(cell)
     local adjacent_cells = flood_fill.get_adjacent_cells(cell)
     local reach = {}
 
@@ -230,7 +220,7 @@ function flood_fill.get_adjacent_cells(cell)
     return adjacent
 end
 
-
+-- Get a table of neighbours that prioritize not_visited_and_lighter_neighbours and if not possible get the lighter_neighbours
 function flood_fill.choose_neighbours(current_cell)
     local tmp = flood_fill.not_visited_and_lighter_neighbours(current_cell)
     if #tmp > 0 then
@@ -240,7 +230,7 @@ function flood_fill.choose_neighbours(current_cell)
     end
 end
 
-
+-- Get a table of neighbour of the current cell with lower weight and not visited
 function flood_fill.not_visited_and_lighter_neighbours(current_cell)
     local tmp ={}
     -- Create a table of not visited neighbour
@@ -253,6 +243,7 @@ function flood_fill.not_visited_and_lighter_neighbours(current_cell)
     return tmp
 end
 
+-- Get a table of neighbour of the current cell with lower weight
 function flood_fill.lighter_neighbours(current_cell)
     local tmp ={}
     -- Create a table of not visited neighbour
@@ -265,6 +256,7 @@ function flood_fill.lighter_neighbours(current_cell)
     return tmp
 end
 
+-- Get a table of reachable neighbours cells 
 function flood_fill.reachable_neighbours_cells(reachable_neighbours)
     local all_reachable_neighbours = {}
     for _, neighbour in ipairs(reachable_neighbours) do
@@ -274,7 +266,7 @@ function flood_fill.reachable_neighbours_cells(reachable_neighbours)
     return all_reachable_neighbours
 end
 
-
+-- Set the initial maze cells weight
 function flood_fill.set_maze_weight()
 
     --[[  
@@ -305,19 +297,21 @@ function flood_fill.set_maze_weight()
     end
 end
 
+-- Set a new destinetion for further maze exploration
 function flood_fill.set_new_destination(row, column)
     for i, cell in ipairs(maze) do
         cell.weight = flood_fill.manhattan_distance(row, column, cell.row, cell.column)
     end
 end
 
--- Calculate the manhattan distance of 2 points
+-- Calculate the manhattan distance of two points
+-- point1 at (x1,y1) and point2 at (x2,y2), it is |x1 - x2| + |y1 - y2|
 function flood_fill.manhattan_distance(first_row, first_column, second_row, second_column)
     return math.abs(second_row - first_row) + math.abs(second_column - first_column)
 end
 
 
--- Debug
+-- Debug print
 function flood_fill.print_weight()
     for i = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
         for j = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
@@ -336,23 +330,12 @@ function flood_fill.print_weight()
 end
 
 
-function flood_fill.copy(value)
-    if type(value) ~= "table" then return value end
-    local t = {}
-    for i, v in pairs(value) do
-      t[i] = flood_fill.copy(v)
-    end
-    return t
+function flood_fill.get_destination()
+    return destination
 end
-  
 
--- To be called when the robot is on the finish zone, get the fastest path from start
-function flood_fill.get_fastest_path_to_finish(starting_row, starting_col)
-    local start = maze.get_cell(starting_row, starting_col)
-    local finish = destination
-    print("starting cell: R " .. starting_row .. "| C " .. starting_col )
-    print("final cell: R " .. current_row .. "| C " .. current_col )
-    return trace_path_to_target(start, finish, maze)
+function flood_fill.get_maze_data()
+    return maze
 end
 
 

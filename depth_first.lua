@@ -6,6 +6,8 @@ require "utils"
 local depth_first = {}
 local maze
 local parent = {row = nil, column = nil}
+local destination = nil
+
 
 function depth_first.init()
     maze = maze_data.new()
@@ -26,7 +28,6 @@ function depth_first.execute()
 
     local not_visited_neighbours = depth_first.not_visited_neighbours_cells(reachable_neighbours)
 
-    local destination
 
     -- Check not visited neighbours size
     if #not_visited_neighbours > 0 then
@@ -57,7 +58,7 @@ function depth_first.not_visited_neighbours_cells(reachable_neighbours)
 end
 
 -- Recursively search for a parent with at least one not visited neighbour
-function  depth_first.parent_with_neighbours_not_visited(p_row, p_column)
+function depth_first.parent_with_neighbours_not_visited(p_row, p_column)
 
     local parent = maze.get_cell(p_row, p_column).parent
     local parent_neighbours = maze.get_cell(parent.row, parent.column).reachable_neighbours
@@ -77,6 +78,14 @@ function  depth_first.parent_with_neighbours_not_visited(p_row, p_column)
     else
         return depth_first.parent_with_neighbours_not_visited(parent.row, parent.column)                   
     end
+end
+
+function depth_first.get_destination()
+    return destination
+end
+
+function depth_first.get_maze_data()
+    return maze
 end
 
 

@@ -6,6 +6,8 @@ require "utils"
 local random_explore = {}
 local maze
 local parent = {row = nil, column = nil}
+local destination = nil
+
 
 function random_explore.init()
     maze = maze_data.new()
@@ -22,11 +24,10 @@ function random_explore.execute()
         check_walls_update_neighbours(maze, current_row, current_col)
     end
 
-    update_parent_not_visited_reachable_neighbours(maze, current_row, current_col)
+    local reachable_neighbours = update_parent_not_visited_reachable_neighbours(maze, current_row, current_col)
 
     parent.row, parent.column = current_row, current_col
 
-    local destination = nil
     -- check if current cell reachable_neighbours are visited if not choose a random one as the target cell
     local has_unexplored_neighbours = false
     for i, neighbour in ipairs(reachable_neighbours) do
@@ -77,5 +78,14 @@ function random_explore.not_visited()
     end
     return temp_table
 end
+
+function random_explore.get_destination()
+    return destination
+end
+
+function random_explore.get_maze_data()
+    return maze
+end
+
 
 return random_explore

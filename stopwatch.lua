@@ -1,6 +1,6 @@
 local stopwatch =  {}
 
-STEPS_TO_SEC = 60 -- test value --
+STEPS_TO_SEC = 60
 steps = 0
 
 function stopwatch.init()
