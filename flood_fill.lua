@@ -10,20 +10,19 @@ local maze
 local maze_flood
 local flood_queue
 local parent = {row = nil, column = nil}
+local path_to_destinaton
+local current_row, current_col
+local destination
 
-arrived_bottom_right = false
-arrived_destination = false
-arrived_start = false
 
 function flood_fill.init()
-    math.randomseed(os.time())
     flood_queue = queue.new()
     maze = maze_data.new()
     flood_fill.set_maze_weight()
     flood_fill.print_weight()
 end
 
-function flood_fill.algorithm()
+function flood_fill.execute()
     current_row, current_col = get_current_row_and_column()
     
     if not maze.get_cell(current_row, current_col).visited then
@@ -37,48 +36,38 @@ function flood_fill.algorithm()
     update_parent_not_visited_reachable_neighbours(maze, current_row, current_col)
     
     local current_cell = maze.get_cell(current_row, current_col)
-    local destination
     
-    --DEMO
-    flood_fill.maze_exploration(current_cell)
 
-    if arrived_start then 
-        destination = maze.get_cell(5,5) -- change in select fastest way
-    else
+    --local temp = flood_fill.lighter_neighbours(current_cell) -- ? filter not visited ?
+    local temp = flood_fill.choose_neighbours(current_cell)
 
-        --local temp = flood_fill.lighter_neighbours(current_cell) -- ? filter not visited ?
+    -- Check lower weight neighbours size
+    if #temp > 0 then
+        --print("LOWER n: " .. #temp)
+            
+        --destination = temp[math.random(1, #temp)] -- to change in minimum
+        destination = flood_fill.get_minimum_weight_neighbour(temp)
+    else -- If stuck
+
+        --print("FLOOD FILl")
+        flood_fill.perform_flood_fill(current_cell)
+
         local temp = flood_fill.choose_neighbours(current_cell)
-
-        -- Check lower weight neighbours size
-        if #temp > 0 then
-            --print("LOWER n: " .. #temp)
+        --print("lighter n: " .. #temp)
             
-            --destination = temp[math.random(1, #temp)] -- to change in minimum
-            destination = flood_fill.get_minimum_weight_neighbour(temp)
-        else -- If stuck
+        --destination = temp[math.random(1, #temp)] -- to change in minimum
+        destination = flood_fill.get_minimum_weight_neighbour(temp)
 
-            --print("FLOOD FILl")
-            flood_fill.perform_flood_fill(current_cell)
-
-            local temp = flood_fill.choose_neighbours(current_cell)
-            --print("lighter n: " .. #temp)
-            
-            
-            --destination = temp[math.random(1, #temp)] -- to change in minimum
-            destination = flood_fill.get_minimum_weight_neighbour(temp)
-
-        end
     end
-
    
     -- Print debug
-    flood_fill.print_weight()
-    print("Current cell: r".. current_cell.row .. "| c"..current_cell.column .. " | weight:" .. current_cell.weight .. " | visited:" .. tostring(current_cell.visited))
-    print("Next cell: r".. destination.row .. "| c"..destination.column .. " | weight:" .. destination.weight .. " | visited:" .. tostring(destination.visited))
+    --flood_fill.print_weight()
+    --print("Current cell: r".. current_cell.row .. "| c"..current_cell.column .. " | weight:" .. current_cell.weight .. " | visited:" .. tostring(current_cell.visited))
+    --print("Next cell: r".. destination.row .. "| c"..destination.column .. " | weight:" .. destination.weight .. " | visited:" .. tostring(destination.visited))
   
     calculate_path_and_move(maze, current_row, current_col, destination)
 
-    maze.print_maze(maze, trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
+    --maze.print_maze(maze, trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
 
     -- Update parent
     parent.row, parent.column = current_row, current_col
@@ -99,7 +88,7 @@ end
 -- **NOTE: if the CELL is not visited the only way to check for reachable neighbours 
 -- is to check if near visited neighbours sees the CELL
 function flood_fill.perform_flood_fill(current_cell)
-    print("FLOOD FILL !")
+    --print("FLOOD FILL !")
 
     flood_queue:enqueue(current_cell)
     --print("-- ENQUEUE --")
@@ -116,20 +105,17 @@ function flood_fill.perform_flood_fill(current_cell)
         --print("---- GET MINIMUM: " .. minimum)
 
         if front_cell.weight <= minimum_n.weight then
-
             front_cell.weight = minimum_n.weight + 1
-
             for _, r in ipairs(reach_n) do
                 flood_queue:enqueue(r)
                 --print("------ ENQUEUE  R: " .. r.row .." | C: " .. r.column)
             end
         end
     end
-
 end
 
 -- DEMO
-function flood_fill.maze_exploration(current_cell)
+--[[ function flood_fill.maze_exploration(current_cell)
     -- change destination to bottom right angle for exploration
     if current_cell.weight <= 0 and not arrived_destination then
 
@@ -160,7 +146,7 @@ function flood_fill.maze_exploration(current_cell)
         arrived_start = true
     end
 
-end
+end ]]
 
 
 -- get minimum weight neighbour
@@ -199,7 +185,6 @@ function flood_fill.get_reachable_neighbours(cell)
 end
 
 
-
 -- Get the cells 
 function flood_fill.cell_is_neighbour(cell)
     local adjacent_cells = flood_fill.get_adjacent_cells(cell)
@@ -220,6 +205,7 @@ function flood_fill.cell_is_neighbour(cell)
 
     return reach
 end
+
 
 -- Get adjacent cells
 function flood_fill.get_adjacent_cells(cell)
@@ -289,37 +275,6 @@ function flood_fill.reachable_neighbours_cells(reachable_neighbours)
 end
 
 
-
--- OLD ----
---[[ function flood_fill.set_maze_weight()
-
-    --[[  
-        Split the matrix in 4 submatrix
-
-        * * * * * * * 
-        * 1.1 * 1.2 *
-        * * * * * * * 
-        * 2.1 * 2.2 *
-        * * * * * * * 
-
-    for i, cell in ipairs(maze) do
-        -- 1.1
-        if cell.row <= (MAX_ROW_COL_POS / 2) and cell.column <= (MAX_ROW_COL_POS / 2)  then
-            cell.weight = MAX_ROW_COL_POS - cell.row - cell.column
-        -- 1.2
-        elseif cell.row <= (MAX_ROW_COL_POS / 2) and cell.column > (MAX_ROW_COL_POS / 2)   then
-            cell.weight = cell.column - cell.row - 1
-        -- 2.1
-        elseif cell.row > (MAX_ROW_COL_POS / 2) and cell.column <= (MAX_ROW_COL_POS / 2) then
-            cell.weight = cell.row - cell.column - 1
-        -- 2.2    
-        elseif cell.row > (MAX_ROW_COL_POS / 2) and cell.column > (MAX_ROW_COL_POS / 2) then
-            cell.weight = cell.column + cell.row - MAX_ROW_COL_POS - 2
-        end
-        
-    end
-end ]]
-
 function flood_fill.set_maze_weight()
 
     --[[  
@@ -381,8 +336,6 @@ function flood_fill.print_weight()
 end
 
 
-
-
 function flood_fill.copy(value)
     if type(value) ~= "table" then return value end
     local t = {}
@@ -392,5 +345,15 @@ function flood_fill.copy(value)
     return t
 end
   
+
+-- To be called when the robot is on the finish zone, get the fastest path from start
+function flood_fill.get_fastest_path_to_finish(starting_row, starting_col)
+    local start = maze.get_cell(starting_row, starting_col)
+    local finish = destination
+    print("starting cell: R " .. starting_row .. "| C " .. starting_col )
+    print("final cell: R " .. current_row .. "| C " .. current_col )
+    return trace_path_to_target(start, finish, maze)
+end
+
 
 return flood_fill

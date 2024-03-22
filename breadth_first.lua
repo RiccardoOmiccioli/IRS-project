@@ -14,7 +14,7 @@ function breadth_first.init()
     maze = maze_data.new()
 end
 
-function breadth_first.algorithm()
+function breadth_first.execute()
     current_row, current_col = get_current_row_and_column()
 
     if not maze.get_cell(current_row, current_col).visited then
@@ -39,5 +39,7 @@ function breadth_first.algorithm()
     -- Update parent
     parent.row, parent.column = current_row, current_col
 end
+
+
 
 return breadth_first

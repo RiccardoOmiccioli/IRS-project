@@ -11,7 +11,7 @@ function random_explore.init()
     maze = maze_data.new()
 end
 
-function random_explore.algorithm()
+function random_explore.execute()
     current_row, current_col = get_current_row_and_column()
 
     if not maze.get_cell(current_row, current_col).visited then

@@ -1,18 +1,31 @@
 floor_detector = require "floor_detector"
 stopwatch = require "stopwatch"
 
+
 local race_management = {}
 
 PENALTY_SEC = 3 -- seconds of penalty
 PENALTY_COOLDOWN = 100 -- number of steps until a new penalty can be added
+
+race_states = {RUN = "RUN", STOP = "STOP"}
+
+
 penalty_start = 0
 penalty_count = 0
 
 is_penalty_enabled = true
-is_floor_detection_enabled = false
+is_floor_detection_enabled = true
+
+function race_management.init()
+	stopwatch.init()
+	penalty_start = 0
+	penalty_count = 0
+	race_state = race_states.STOP
+end
 
 function race_management.run()
-	stopwatch.increment()
+
+	local race_state = race_states.RUN
 
 	if is_penalty_enabled then
 		race_management.check_penalty()
@@ -28,6 +41,8 @@ function race_management.run()
 			else
 				log("Arrival time: " .. stopwatch.get_seconds() .. " sec" .. " + " .. penalty_count * PENALTY_SEC .. " sec penalty" )
 			end
+
+			race_state = race_states.STOP
 		else
 			log("MOVING")
 			-- Check floor and start stopwatch
@@ -41,6 +56,7 @@ function race_management.run()
 			-- stopwatch.print_debug()
 		end
 	end
+	return race_state
 end
 
 -- Check if a penalty need to be added by checking if the robot is touching a wall and if the cooldown has passed

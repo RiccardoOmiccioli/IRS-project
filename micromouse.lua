@@ -5,42 +5,62 @@ require "position"
 require "proximity"
 
 -- Global variables
-depth_first = require "depth_first"
-breadth_first = require "breadth_first"
-random_explore = require "random_explore"
 race_management = require "race_management"
+
+local maze_data
+local available_algorithms = {DEPTH_FIRST = "depth_first", BREADTH_FIRST = "breadth_first",  FLOOD_FILL = "flood_fill", RANDOM_EXPLORE = "random_explore"}
+
+-- SELECT ALGORITHM --
+local algorithm = require(available_algorithms.FLOOD_FILL)
+
+local is_reset = false
+local race
+local final_path
 
 -- This function is executed every time you press the 'execute' button
 function init()
-
-	start_distance_scanner()
-
-	robot.leds.set_single_color(3, "red")
-	robot.leds.set_single_color(4, "red")
-	robot.leds.set_single_color(9, "green")
-	robot.leds.set_single_color(10, "green")
-
+	log("INIT")
+	math.randomseed(os.time())
+	
+	init_robot()
+	
+	race_management.init()
 	stopwatch.init()
-	depth_first.init()
-	-- random_explore.init()
-	-- breadth_first.init()
+	
+	algorithm.init()
+
+	is_reset = false
+	race = race_states.STOP
+
 end
 
 
 -- This function is executed at each time step. It must contain the logic of your controller
 function step()
-	race_management.run()
+	log("STEP")
+
+	race = race_management.run()
 
 	is_moving, remaining_moves = move()
-	if not is_moving then
-		if remaining_moves == 0 then
-			print("--------------------SET SLOW VELOCITY-------------------")
-			set_slow_velocity() -- set default velocity to slow after a list of movements is done
 
-			depth_first.algorithm()
-			-- random_explore.algorithm()
-			-- breadth_first.algorithm()
+	-- Search best path with algorithm
+	if race == race_states.RUN then 
+		--print("move")
+		if not is_moving then
+			if remaining_moves == 0 then
+				set_slow_velocity() -- set default velocity to slow after a list of movements is done
+				algorithm.execute()
+
+				--print("RUN")
+			end
 		end
+	end
+
+	-- When it stops get fastest path
+	if race == race_states.STOP then
+		print("STOP")
+		final_path = algorithm.get_fastest_path_to_finish(1,1)
+		--print_path(final_path)
 	end
 
 	-- ******************************************************************
@@ -63,10 +83,42 @@ end
     automatically by ARGoS.
 ]]
 function reset()
+	log("RESET")
+
+	init_robot()
+	race_management.init()
+	reset_position()
+	
+	race = race_states.STOP
+	print("final path -----------------")
+	--print_path(final_path)
+
+	load_fast_path()
 end
 
 
 -- This function is executed only once, when the robot is removed from the simulation
 function destroy()
+	log("DESTROY")
    -- put your code here
+end
+
+  
+function init_robot()
+
+	start_distance_scanner()
+
+	robot.leds.set_single_color(3, "red")
+	robot.leds.set_single_color(4, "red")
+	robot.leds.set_single_color(9, "green")
+	robot.leds.set_single_color(10, "green")
+end
+  
+function load_fast_path()
+	--print("execute fast travel")
+	set_fast_velocity()
+	local movements = calculate_path_movements(final_path)
+	for _, movement in ipairs(movements) do
+		move(movement.movement, movement.direction, movement.delta)
+	end
 end

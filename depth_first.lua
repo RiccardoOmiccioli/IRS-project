@@ -9,10 +9,9 @@ local parent = {row = nil, column = nil}
 
 function depth_first.init()
     maze = maze_data.new()
-    math.randomseed(os.time())
 end
 
-function depth_first.algorithm()
+function depth_first.execute()
     current_row, current_col = get_current_row_and_column()
 
     if not maze.get_cell(current_row, current_col).visited then
@@ -79,5 +78,6 @@ function  depth_first.parent_with_neighbours_not_visited(p_row, p_column)
         return depth_first.parent_with_neighbours_not_visited(parent.row, parent.column)                   
     end
 end
+
 
 return depth_first
