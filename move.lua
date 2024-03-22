@@ -1,4 +1,4 @@
-MAZE_UNIT_LENGHT = 50 -- cm length of a maze unit
+MAZE_UNIT_LENGTH = 50 -- cm length of a maze unit
 TURN_LINEAR_LENGTH = math.pi * robot.wheels.axis_length / 4 -- linear distance that the wheels needs to travel to turn 90 degrees
 TURN_RADIUS =  robot.wheels.axis_length / 2 -- radius of the circle that the wheels travels when turning
 
@@ -54,7 +54,7 @@ end
 
 -- Starts a new straight movement or continues movement if already going straight
 function straight()
-    distance_to_travel = current_move.delta ~= nil and current_move.delta or MAZE_UNIT_LENGHT
+    distance_to_travel = current_move.delta ~= nil and current_move.delta or MAZE_UNIT_LENGTH
     if not is_moving then
         distance_traveled = 0
         is_moving = true
@@ -130,15 +130,15 @@ function move(movement, direction, delta, has_priority)
                 table.insert(move_array, {movement = movement, direction = direction, delta = delta})
             end
         elseif movement == COMPLEX_MOVE.N_STRAIGHT then
-            table.insert(move_array, {movement = BASIC_MOVE.STRAIGHT, direction = direction, delta = delta * MAZE_UNIT_LENGHT})
+            table.insert(move_array, {movement = BASIC_MOVE.STRAIGHT, direction = direction, delta = delta * MAZE_UNIT_LENGTH})
         elseif movement == COMPLEX_MOVE.FLIP then
             table.insert(move_array, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi})
         elseif movement == COMPLEX_MOVE.FLIP_AND_FORWARD then
             table.insert(move_array, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi})
-            table.insert(move_array, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGHT})
+            table.insert(move_array, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGTH})
         elseif movement == COMPLEX_MOVE.TURN_AND_FORWARD then
             table.insert(move_array, {movement = BASIC_MOVE.TURN, direction = direction, delta = math.pi / 2})
-            table.insert(move_array, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGHT})
+            table.insert(move_array, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGTH})
         end
     else
         if is_moving then
@@ -164,7 +164,7 @@ MOVE_DIRECTION = { FORWARD = 1, BACKWARDS = 2, LEFT = 3, RIGHT = 4 }
 
 --[[
     BASIC_MOVE represents the basic movements that the bot is programmed to do
-        STRAIGHT is a move that goes straight one MAZE_UNIT_LENGHT or a given delta if provided
+        STRAIGHT is a move that goes straight one MAZE_UNIT_LENGTH or a given delta if provided
         TURN is a move that turns 90 degrees or a given delta if provided
         L_TURN *NOT IMPLEMENTED* is a move that executes a L turn smoothly
 ]]
@@ -172,10 +172,10 @@ BASIC_MOVE = { STRAIGHT = straight, TURN = turn, L_TURN = l_turn }
 
 --[[
     COMPLEX_MOVE is a move that is composed from one or more BASIC_MOVE
-        N_STRAIGHT is a move that goes forward or backwards n times the MAZE_UNIT_LENGHT
+        N_STRAIGHT is a move that goes forward or backwards n times the MAZE_UNIT_LENGTH
         FLIP is a move that turns 180 degrees
-        FLIP_AND_FORWARD is a move that turns 180 degrees and then goes forward one MAZE_UNIT_LENGHT
-        TURN_AND_FORWARD is a move that turns 90 degreed and then goes forward one MAZE_UNIT_LENGHT
+        FLIP_AND_FORWARD is a move that turns 180 degrees and then goes forward one MAZE_UNIT_LENGTH
+        TURN_AND_FORWARD is a move that turns 90 degreed and then goes forward one MAZE_UNIT_LENGTH
 ]]
 COMPLEX_MOVE = { N_STRAIGHT = 1, FLIP = 2, FLIP_AND_FORWARD = 3, TURN_AND_FORWARD = 4 }
 
@@ -216,7 +216,7 @@ function optimize_movements(movements)
     for i, movement in ipairs(movements) do
         if movement.movement == COMPLEX_MOVE.N_STRAIGHT then
             for j = 1, movement.delta do
-                table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = movement.direction, delta = movement.delta * MAZE_UNIT_LENGHT})
+                table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = movement.direction, delta = movement.delta * MAZE_UNIT_LENGTH})
             end
         elseif movement.movement == COMPLEX_MOVE.FLIP then
             table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi / 2})
@@ -224,14 +224,14 @@ function optimize_movements(movements)
         elseif movement.movement == COMPLEX_MOVE.FLIP_AND_FORWARD then
             table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi / 2})
             table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = MOVE_DIRECTION.RIGHT, delta = math.pi / 2})
-            table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGHT})
+            table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGTH})
         elseif movement.movement == COMPLEX_MOVE.TURN_AND_FORWARD then
             table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = movement.direction, delta = math.pi / 2})
-            table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGHT})
+            table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = MOVE_DIRECTION.FORWARD, delta = MAZE_UNIT_LENGTH})
         elseif movement.movement == BASIC_MOVE.STRAIGHT then
-            table.insert(basic_movements, movement)
+            table.insert(basic_movements, {movement = BASIC_MOVE.STRAIGHT, direction = movement.direction, delta = MAZE_UNIT_LENGTH})
         elseif movement.movement == BASIC_MOVE.TURN then
-            table.insert(basic_movements, movement)
+            table.insert(basic_movements, {movement = BASIC_MOVE.TURN, direction = movement.direction, delta = math.pi / 2})
         end
     end
 
@@ -244,7 +244,7 @@ function optimize_movements(movements)
                 movement.delta = movement.delta + basic_movement.delta
             else
                 if basic_movement.movement == BASIC_MOVE.STRAIGHT then
-                    movement.delta = movement.delta + MAZE_UNIT_LENGHT
+                    movement.delta = movement.delta + MAZE_UNIT_LENGTH
                 else
                     movement.delta = movement.delta + math.pi / 2
                 end
