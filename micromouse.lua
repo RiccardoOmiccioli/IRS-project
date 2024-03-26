@@ -21,6 +21,7 @@ local algorithm = require(available_algorithms.FLOOD_FILL)
 
 local race
 local final_path
+local is_reset = false
 
 -- This function is executed every time you press the 'execute' button
 function init()
@@ -39,19 +40,21 @@ function step()
 	is_moving, remaining_moves = move.move()
 
 	-- Search best path with algorithm
-	if race == race_states.RUN then
-		if not is_moving then
-			if remaining_moves == 0 then
-				move.set_slow_velocity() -- set default velocity to slow after a list of movements is done
-				algorithm.execute()
+	if not is_reset then
+		if race == race_states.RUN then
+			if not is_moving then
+				if remaining_moves == 0 then
+					move.set_slow_velocity() -- set default velocity to slow after a list of movements is done
+					algorithm.execute()
+				end
 			end
 		end
-	end
 
-	-- When it stops get fastest path
-	if race == race_states.STOP then
-		print("STOP")
-		final_path = get_fastest_path_to_finish(algorithm)
+		-- When it stops get fastest path
+		if race == race_states.STOP then
+			--print("STOP")
+			final_path = get_fastest_path_to_finish(algorithm)
+		end
 	end
 end
 
@@ -63,17 +66,21 @@ end
     automatically by ARGoS.
 ]]
 function reset()
-	log("RESET")
+	--log("RESET")
+	
 	init_robot()
 	race_management.init()
 	position.reset_position()
 	race = race_states.STOP
-	load_fast_path()
+	if not is_reset then
+		load_fast_path()
+		is_reset = true
+	end
 end
 
 -- This function is executed only once, when the robot is removed from the simulation
 function destroy()
-	log("DESTROY")
+	--log("DESTROY")
    -- put your code here
 end
 
