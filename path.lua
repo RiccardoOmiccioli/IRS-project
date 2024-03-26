@@ -1,18 +1,11 @@
 maze_data = require "maze_data"
-require "move"
-require "position"
+move = require "move"
+position = require "position"
+require "utils"
 
-function find_path(start_cell, end_cell)
-    local movements = {}
+local path = {}
 
-    if start_cell.row == end_cell.row and start_cell.column == end_cell.column then
-        return movements
-    end
-
-
-end
-
-function trace_path_to_start(cell, maze)
+function path.trace_path_to_start(cell, maze)
     local path = {}
 
     -- insert current cell in path
@@ -48,9 +41,9 @@ end
     the first cell in common is the cell where the two paths meet
     the path from the start cell to the target cell is the path from the start cell to the meeting cell plus the path from the meeting cell to the target cell
 ]]
-function trace_path_to_target(start_cell, target_cell, maze)
-    local start_path = trace_path_to_start(start_cell, maze)
-    local target_path = trace_path_to_start(target_cell, maze)
+function path.trace_path_to_target(start_cell, target_cell, maze)
+    local start_path = path.trace_path_to_start(start_cell, maze)
+    local target_path = path.trace_path_to_start(target_cell, maze)
 
     local path = {}
 
@@ -113,15 +106,15 @@ end
     it returns an array of movements to do
     it needs to consider the current heading of the robot and following the path considering the heading of the robot that canges during the path
 ]]
-function calculate_path_movements(path)
+function path.calculate_path_movements(path)
     local movements = {}
 
     if #path == 0 then
         return movements
     end
 
-    local heading = get_current_heading()
-    local current_row, current_col = get_current_row_and_column()
+    local heading = position.get_current_heading()
+    local current_row, current_col = position.get_current_row_and_column()
 
     -- remove the first cell from the path as it is the current cell
     table.remove(path, 1)
@@ -181,23 +174,16 @@ function calculate_path_movements(path)
         current_col = cell.column
     end
 
-    optimized_movements = optimize_movements(movements)
-
-    for i, optimized_movement in ipairs(optimized_movements) do
-        _, basic_move = table_contains(BASIC_MOVE, optimized_movement.movement)
-        _, complex_move = table_contains(COMPLEX_MOVE, optimized_movement.movement)
-        _, move_direction = table_contains(MOVE_DIRECTION, optimized_movement.direction)
-        move_movement = basic_move or complex_move
-        move_delta = optimized_movement.delta or "default"
-        print(tostring(move_movement) .. " " .. tostring(move_direction) .. " " .. tostring(move_delta))
-    end
+    optimized_movements = move.optimize_movements(movements)
 
     return optimized_movements
 end
 
-function print_path(path)
+function path.print_path(path)
     for i, cell in ipairs(path) do
         io.write(cell.row .. "-" .. cell.column .. "  ")
     end
     io.write("\n")
 end
+
+return path

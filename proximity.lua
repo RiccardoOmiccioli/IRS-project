@@ -1,8 +1,10 @@
 SENSORS_NUMBER = 24
 PROXIMITY_THRESHOLD = 0.90
 
+local proximity = {}
+
 -- Returns angle and value of the closest object. If no object is detected returns 0 and 0.
-function get_closest_object()
+function proximity.get_closest_object()
     proximity_angles = {}
     proximity_angle = 0
     proximity_value = 0
@@ -29,7 +31,7 @@ function get_closest_object()
 end
 
 -- Returns true if the robot is closer to a wall than a certain threshold
-function is_touching_wall()
+function proximity.is_touching_wall()
     for i=1,SENSORS_NUMBER do
         if robot.proximity[i].value > PROXIMITY_THRESHOLD then
             return true
@@ -37,3 +39,5 @@ function is_touching_wall()
     end
     return false
 end
+
+return proximity

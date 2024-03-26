@@ -1,20 +1,21 @@
 maze_data = require "maze_data"
 distance = require "distance"
-require "path"
+path = require "path"
+position = require "position"
 require "utils"
 
 local depth_first = {}
+
 local maze
 local parent = {row = nil, column = nil}
 local destination = nil
-
 
 function depth_first.init()
     maze = maze_data.new()
 end
 
 function depth_first.execute()
-    current_row, current_col = get_current_row_and_column()
+    current_row, current_col = position.get_current_row_and_column()
 
     if not maze.get_cell(current_row, current_col).visited then
 
@@ -36,7 +37,7 @@ function depth_first.execute()
         local parent_row, parent_column = depth_first.parent_with_neighbours_not_visited(current_row, current_col)
         destination = maze.get_cell(parent_row, parent_column)
     end
-  
+
     calculate_path_and_move(maze, current_row, current_col, destination)
 
     -- Debug
@@ -69,14 +70,14 @@ function depth_first.parent_with_neighbours_not_visited(p_row, p_column)
     for i = 1, #parent_neighbours do
         local temp = maze.get_cell(parent_neighbours[i].row, parent_neighbours[i].column)
         if not temp.visited then
-            has_one_not_visited = true              
+            has_one_not_visited = true
         end
     end
 
     if has_one_not_visited then
         return parent.row, parent.column
     else
-        return depth_first.parent_with_neighbours_not_visited(parent.row, parent.column)                   
+        return depth_first.parent_with_neighbours_not_visited(parent.row, parent.column)
     end
 end
 
@@ -87,6 +88,5 @@ end
 function depth_first.get_maze_data()
     return maze
 end
-
 
 return depth_first

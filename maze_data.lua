@@ -1,4 +1,8 @@
+position = require "position"
+require "utils"
+
 local maze_data = {}
+
 MIN_ROW_COL_POS = 1
 MAX_ROW_COL_POS = 8
 
@@ -81,8 +85,8 @@ function maze_data.print_maze(maze, path)
     if not path then
         path = {}
     end
-    local current_row, current_col = get_current_row_and_column()
-    local current_heading = get_current_heading()
+    local current_row, current_col = position.get_current_row_and_column()
+    local current_heading = position.get_current_heading()
     for i = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
         for j = MIN_ROW_COL_POS, MAX_ROW_COL_POS do
             local cell = maze.get_cell(i, j)
@@ -116,6 +120,5 @@ function maze_data.print_maze(maze, path)
         print("")
     end
 end
-
 
 return maze_data

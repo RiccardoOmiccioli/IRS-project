@@ -1,20 +1,21 @@
 maze_data = require "maze_data"
 distance = require "distance"
-require "path"
+path = require "path"
+position = require "position"
 require "utils"
 
 local random_explore = {}
+
 local maze
 local parent = {row = nil, column = nil}
 local destination = nil
-
 
 function random_explore.init()
     maze = maze_data.new()
 end
 
 function random_explore.execute()
-    current_row, current_col = get_current_row_and_column()
+    current_row, current_col = position.get_current_row_and_column()
 
     if not maze.get_cell(current_row, current_col).visited then
 
@@ -44,12 +45,12 @@ function random_explore.execute()
         destination = filtered_cells[math.random(1, #filtered_cells)]
     end
 
-    current_cell_path = trace_path_to_start(maze.get_cell(current_row, current_col), maze)
-    destination_path = trace_path_to_start(destination, maze)
+    current_cell_path = path.trace_path_to_start(maze.get_cell(current_row, current_col), maze)
+    destination_path = path.trace_path_to_start(destination, maze)
 
     calculate_path_and_move(maze, current_row, current_col, destination)
 
-    maze.print_maze(maze, trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
+    maze.print_maze(maze, path.trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
 end
 
 function random_explore.filter()
@@ -86,6 +87,5 @@ end
 function random_explore.get_maze_data()
     return maze
 end
-
 
 return random_explore

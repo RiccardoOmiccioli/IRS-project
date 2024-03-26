@@ -1,11 +1,16 @@
+distance = require "distance"
+maze = require "maze"
+path = require "path"
+position = require "position"
+
 NO_WALL = -2
 MAX_WALL_DISTANCE = 25
 
 -- check walls near current cell to find reachable neighbours
 function check_walls_update_neighbours(maze, current_row, current_col)
-    local robot_orientation = get_current_heading()
+    local robot_orientation = position.get_current_heading()
 
-    wall_distances = get_all_distances()
+    wall_distances = distance.get_all_distances()
     for key, value in pairs(wall_distances) do
         if value == NO_WALL or value > MAX_WALL_DISTANCE then
             calculate_neighbour_cell(maze, current_row, current_col, robot_orientation, key)
@@ -83,10 +88,10 @@ end
 -- calculate path and movements from current cell to destination cell
 -- then move the robot
 function calculate_path_and_move(maze, current_row, current_col, destination)
-    local movements = calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
+    local movements = path.calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
 
     for _, movement in ipairs(movements) do
-        move(movement.movement, movement.direction, movement.delta)
+        move.move(movement.movement, movement.direction, movement.delta)
     end
 end
 
@@ -96,5 +101,19 @@ function get_fastest_path_to_finish(algorithm)
     local maze = algorithm.get_maze_data()
     local start = maze.get_cell(MIN_ROW_COL_POS, MIN_ROW_COL_POS)
     local finish = algorithm.get_destination()
-    return trace_path_to_target(start, finish, maze)
+    return path.trace_path_to_target(start, finish, maze)
+end
+
+-- Checks if a table contains a given value and returns first occurrence
+function table_contains(table, value)
+    found = false
+    key = nil
+    for k, v in pairs(table) do
+        if v == value then
+            found = true
+            key = k
+            break
+        end
+    end
+    return found, key, value
 end

@@ -1,3 +1,10 @@
+calibrate = require "calibrate"
+distance = require "distance"
+position = require "position"
+require "utils"
+
+local move = {}
+
 MAZE_UNIT_LENGTH = 50 -- cm length of a maze unit
 TURN_LINEAR_LENGTH = math.pi * robot.wheels.axis_length / 4 -- linear distance that the wheels needs to travel to turn 90 degrees
 TURN_RADIUS =  robot.wheels.axis_length / 2 -- radius of the circle that the wheels travels when turning
@@ -30,7 +37,7 @@ current_move = nil
 move_array = {} -- array of movements to be done
 
 -- set bot parameters for fast movements
-function set_fast_velocity()
+function move.set_fast_velocity()
     max_constant_velocity = MAX_FAST_CONSTANT_VELOCITY
     min_linear_velocity = MIN_FAST_LINEAR_VELOCITY
     max_linear_velocity = MAX_FAST_LINEAR_VELOCITY
@@ -39,7 +46,7 @@ function set_fast_velocity()
 end
 
 -- set bot parameters for slow movements
-function set_slow_velocity()
+function move.set_slow_velocity()
     max_constant_velocity = MAX_SLOW_CONSTANT_VELOCITY
     min_linear_velocity = MIN_SLOW_LINEAR_VELOCITY
     max_linear_velocity = MAX_SLOW_LINEAR_VELOCITY
@@ -48,12 +55,12 @@ function set_slow_velocity()
 end
 
 -- Checks if the bot stopped based on distance sensors if available
-function is_stopped()
-    return not is_distance_changed()
+function move.is_stopped()
+    return not distance.is_distance_changed()
 end
 
 -- Starts a new straight movement or continues movement if already going straight
-function straight()
+function move.straight()
     distance_to_travel = current_move.delta ~= nil and current_move.delta or MAZE_UNIT_LENGTH
     if not is_moving then
         distance_traveled = 0
@@ -88,7 +95,7 @@ function straight()
 end
 
 -- Starts a new turn movement or continues movement if already turning
-function turn()
+function move.turn()
     distance_to_travel = current_move.delta ~= nil and (current_move.delta * TURN_RADIUS) or TURN_LINEAR_LENGTH
     if not is_moving then
         distance_traveled = 0
@@ -108,10 +115,6 @@ function turn()
     end
 end
 
-function l_turn()
-    -- TODO
-end
-
 --[[
     If a movement and a direction are provided adds a movement with that direction to the movements to be done.
     If a movement, direction and a delta are provided adds a movement in a direction which has a specified distance or angle to the movements to be done.
@@ -121,7 +124,7 @@ end
     If called without parameters continues to execute programmed movements.
     Returns a boolean value indicating if the bot is in the middle of a movement.
 ]]
-function move(movement, direction, delta, has_priority)
+function move.move(movement, direction, delta, has_priority)
     if movement then
         if table_contains(BASIC_MOVE, movement) then
             if has_priority == true then
@@ -144,14 +147,13 @@ function move(movement, direction, delta, has_priority)
         if is_moving then
             current_move.movement()
         else
-            if is_stopped() then
-                row, col = get_current_row_and_column()
-                if is_calibration_needed() then
-                    calibrate_position()
+            if move.is_stopped() then
+                if calibrate.is_calibration_needed() then
+                    calibrate.calibrate_position()
                 end
                 if #move_array > 0 then
                     current_move = table.remove(move_array, 1)
-                    update_position(current_move.movement, current_move.direction, current_move.delta)
+                    position.update_position(current_move.movement, current_move.direction, current_move.delta)
                     current_move.movement()
                 end
             end
@@ -166,9 +168,8 @@ MOVE_DIRECTION = { FORWARD = 1, BACKWARDS = 2, LEFT = 3, RIGHT = 4 }
     BASIC_MOVE represents the basic movements that the bot is programmed to do
         STRAIGHT is a move that goes straight one MAZE_UNIT_LENGTH or a given delta if provided
         TURN is a move that turns 90 degrees or a given delta if provided
-        L_TURN *NOT IMPLEMENTED* is a move that executes a L turn smoothly
 ]]
-BASIC_MOVE = { STRAIGHT = straight, TURN = turn, L_TURN = l_turn }
+BASIC_MOVE = { STRAIGHT = move.straight, TURN = move.turn }
 
 --[[
     COMPLEX_MOVE is a move that is composed from one or more BASIC_MOVE
@@ -179,31 +180,6 @@ BASIC_MOVE = { STRAIGHT = straight, TURN = turn, L_TURN = l_turn }
 ]]
 COMPLEX_MOVE = { N_STRAIGHT = 1, FLIP = 2, FLIP_AND_FORWARD = 3, TURN_AND_FORWARD = 4 }
 
--- Checks if a table contains a given value and returns first occurrence
-function table_contains(table, value)
-    found = false
-    key = nil
-    for k, v in pairs(table) do
-        if v == value then
-            found = true
-            key = k
-            break
-        end
-    end
-    return found, key, value
-end
-
---[[ Usage
-    if move() then
-        -- do something while the robot is moving
-    else
-        -- decide next move and use move function eg.
-        move(BASIC_MOVE.STRAIGHT, MOVE_DIRECTION.FORWARD)
-	    move(COMPLEX_MOVE.TURN_AND_FORWARD, MOVE_DIRECTION.LEFT)
-	    move(COMPLEX_MOVE.N_STRAIGHT, MOVE_DIRECTION.FORWARD, 5)
-    end
-]]
-
 --[[
     This function optimizes an array of movements by converting consecutive movements in the same direction into a single movement
     It takes an array of movements as input and returns an optimized array of movements
@@ -211,7 +187,7 @@ end
         - First it converts all COMPLEX_MOVE into BASIC_MOVE
         - Then it converts all consecutive BASIC_MOVE in the same direction into a single BASIC_MOVE
 ]]
-function optimize_movements(movements)
+function move.optimize_movements(movements)
     local basic_movements = {}
     for i, movement in ipairs(movements) do
         if movement.movement == COMPLEX_MOVE.N_STRAIGHT then
@@ -260,6 +236,7 @@ function optimize_movements(movements)
             table.insert(optimized_movements, movement)
         end
     end
-
     return optimized_movements
 end
+
+return move

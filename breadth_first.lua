@@ -1,10 +1,12 @@
 queue = require "Queue"
 maze_data = require "maze_data"
 distance = require "distance"
-require "path"
+path = require "path"
+position = require "position"
 require "utils"
 
 local breadth_first = {}
+
 local cells_queue
 local maze
 local parent = {row = nil, column = nil}
@@ -16,10 +18,10 @@ function breadth_first.init()
 end
 
 function breadth_first.execute()
-    current_row, current_col = get_current_row_and_column()
+    current_row, current_col = position.get_current_row_and_column()
 
     if not maze.get_cell(current_row, current_col).visited then
-        
+
         maze.update_visited(current_row, current_col, true)
         maze.update_parent(current_row, current_col, {row = parent.row, column = parent.column})
 
@@ -41,7 +43,6 @@ function breadth_first.execute()
     parent.row, parent.column = current_row, current_col
 end
 
-
 function breadth_first.get_destination()
     return destination
 end
@@ -49,6 +50,5 @@ end
 function breadth_first.get_maze_data()
     return maze
 end
-
 
 return breadth_first

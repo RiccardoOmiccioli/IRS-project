@@ -2,7 +2,7 @@ local floor_detector = {}
 
 DETECTOR_THRESHOLD = 0.1 -- sensor value threshold
 
-floor_color = {WHITE = 1 , BLACK = 0, GREY = 0.5} -- maze floor color 
+floor_color = {WHITE = 1 , BLACK = 0, GREY = 0.5} -- maze floor color
 
 floor_type = {START = floor_color.GREY, PATH = floor_color.WHITE, FINISH = floor_color.BLACK} -- floor types
 

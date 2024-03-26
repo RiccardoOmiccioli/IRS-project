@@ -27,5 +27,3 @@ function stopwatch.print_debug()
 end
 
 return stopwatch
-
-

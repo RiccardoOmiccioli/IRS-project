@@ -82,7 +82,6 @@ full_1 = {
     function generate_maze_xml(maze_configuration)
         local new_maze_lines = {}
         local wall_id = 1
-
         for i, row in ipairs(maze_configuration) do
             for j, column in ipairs(row) do
                 -- create left wall if the cell has a wall to the left
@@ -115,7 +114,6 @@ full_1 = {
                 end
             end
         end
-
         return new_maze_lines
     end
 
