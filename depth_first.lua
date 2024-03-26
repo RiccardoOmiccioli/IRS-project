@@ -23,11 +23,10 @@ function depth_first.execute()
 
     local not_visited_neighbours = depth_first.not_visited_neighbours_cells(reachable_neighbours)
 
-
     -- Check not visited neighbours size
     if #not_visited_neighbours > 0 then
         destination = not_visited_neighbours[math.random(1, #not_visited_neighbours)]
-    else
+    else -- Check parents recursively
         local parent_row, parent_column = depth_first.parent_with_neighbours_not_visited(current_row, current_col)
         destination = maze.get_cell(parent_row, parent_column)
     end
@@ -41,6 +40,20 @@ function depth_first.execute()
     parent.row, parent.column = current_row, current_col
 end
 
+-- Recursively search for a parent with at least one not visited neighbour
+function depth_first.parent_with_neighbours_not_visited(p_row, p_column)
+
+    local parent = maze.get_cell(p_row, p_column).parent
+    local parent_neighbours = maze.get_cell(parent.row, parent.column).reachable_neighbours
+
+    if #depth_first.not_visited_neighbours_cells(parent_neighbours) > 0 then
+        return parent.row, parent.column
+    else
+        return depth_first.parent_with_neighbours_not_visited(parent.row, parent.column)
+    end
+end
+
+
 function depth_first.not_visited_neighbours_cells(reachable_neighbours)
     local all_reachable_neighbours = {}
     for _, neighbour in ipairs(reachable_neighbours) do
@@ -50,29 +63,6 @@ function depth_first.not_visited_neighbours_cells(reachable_neighbours)
         end
     end
     return all_reachable_neighbours
-end
-
--- Recursively search for a parent with at least one not visited neighbour
-function depth_first.parent_with_neighbours_not_visited(p_row, p_column)
-
-    local parent = maze.get_cell(p_row, p_column).parent
-    local parent_neighbours = maze.get_cell(parent.row, parent.column).reachable_neighbours
-
-    local has_one_not_visited = false
-
-    -- Check if parent has at least one not visited neighbour
-    for i = 1, #parent_neighbours do
-        local temp = maze.get_cell(parent_neighbours[i].row, parent_neighbours[i].column)
-        if not temp.visited then
-            has_one_not_visited = true
-        end
-    end
-
-    if has_one_not_visited then
-        return parent.row, parent.column
-    else
-        return depth_first.parent_with_neighbours_not_visited(parent.row, parent.column)
-    end
 end
 
 function depth_first.get_destination()
