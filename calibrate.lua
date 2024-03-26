@@ -1,6 +1,3 @@
-move = require "move"
-distance = require "distance"
-
 local calibrate = {}
 
 SENSOR_DISTANCE_FROM_WALL = 14

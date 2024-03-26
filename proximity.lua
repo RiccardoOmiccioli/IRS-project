@@ -1,7 +1,7 @@
+local proximity = {}
+
 SENSORS_NUMBER = 24
 PROXIMITY_THRESHOLD = 0.90
-
-local proximity = {}
 
 -- Returns angle and value of the closest object. If no object is detected returns 0 and 0.
 function proximity.get_closest_object()

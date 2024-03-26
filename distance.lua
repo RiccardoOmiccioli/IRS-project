@@ -1,7 +1,7 @@
+local distance = {}
+
 MAX_SHORT_RANGE_DISTANCE = 30
 DISTANCE_THRESHOLD = 0.5
-
-local distance = {}
 
 local previous_distance = {front = 0, back = 0, right = 0, left = 0}
 local current_distance = {front = 0, back = 0, right = 0, left = 0}
@@ -34,20 +34,20 @@ end
 function distance.get_all_distances()
     distances = {front = 0, back = 0, right = 0, left = 0}
 
-    distances.front = get_front_distance()
-    distances.back = get_back_distance()
-    distances.right = get_right_distance()
-    distances.left = get_left_distance()
+    distances.front = distance.get_front_distance()
+    distances.back = distance.get_back_distance()
+    distances.right = distance.get_right_distance()
+    distances.left = distance.get_left_distance()
 
     return distances
 end
 
 -- checks if the current distance is different from the previous one my more than DISTANCE_THRESHOLD. Returns true if it is, false otherwise. Then updates the previous distance with the current one. to be compared values should be more than 0
 function distance.is_distance_changed()
-    current_distance.front = get_front_distance()
-    current_distance.back = get_back_distance()
-    current_distance.right = get_right_distance()
-    current_distance.left = get_left_distance()
+    current_distance.front = distance.get_front_distance()
+    current_distance.back = distance.get_back_distance()
+    current_distance.right = distance.get_right_distance()
+    current_distance.left = distance.get_left_distance()
     is_changed = false
     if current_distance.front > 0 and math.abs(current_distance.front - previous_distance.front) > DISTANCE_THRESHOLD or
         current_distance.back > 0 and math.abs(current_distance.back - previous_distance.back) > DISTANCE_THRESHOLD or

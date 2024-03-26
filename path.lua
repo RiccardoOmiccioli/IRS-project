@@ -1,8 +1,3 @@
-maze_data = require "maze_data"
-move = require "move"
-position = require "position"
-require "utils"
-
 local path = {}
 
 function path.trace_path_to_start(cell, maze)

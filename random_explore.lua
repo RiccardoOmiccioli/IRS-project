@@ -1,9 +1,3 @@
-maze_data = require "maze_data"
-distance = require "distance"
-path = require "path"
-position = require "position"
-require "utils"
-
 local random_explore = {}
 
 local maze

@@ -1,8 +1,3 @@
-calibrate = require "calibrate"
-distance = require "distance"
-position = require "position"
-require "utils"
-
 local move = {}
 
 MAZE_UNIT_LENGTH = 50 -- cm length of a maze unit

@@ -1,8 +1,3 @@
-distance = require "distance"
-maze = require "maze"
-path = require "path"
-position = require "position"
-
 NO_WALL = -2
 MAX_WALL_DISTANCE = 25
 
@@ -88,7 +83,7 @@ end
 -- calculate path and movements from current cell to destination cell
 -- then move the robot
 function calculate_path_and_move(maze, current_row, current_col, destination)
-    local movements = path.calculate_path_movements(trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
+    local movements = path.calculate_path_movements(path.trace_path_to_target(maze.get_cell(current_row, current_col), destination, maze))
 
     for _, movement in ipairs(movements) do
         move.move(movement.movement, movement.direction, movement.delta)

@@ -1,6 +1,3 @@
-position = require "position"
-require "utils"
-
 local maze_data = {}
 
 MIN_ROW_COL_POS = 1

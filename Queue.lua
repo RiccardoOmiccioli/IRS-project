@@ -1,5 +1,5 @@
--- Define the Queue class
 local Queue = {}
+
 Queue.__index = Queue
 
 -- Constructor function to create a new queue

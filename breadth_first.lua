@@ -1,10 +1,3 @@
-queue = require "Queue"
-maze_data = require "maze_data"
-distance = require "distance"
-path = require "path"
-position = require "position"
-require "utils"
-
 local breadth_first = {}
 
 local cells_queue

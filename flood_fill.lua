@@ -1,9 +1,3 @@
-queue = require "Queue"
-maze_data = require "maze_data"
-distance = require "distance"
-path = require "path"
-require "utils"
-
 local flood_fill = {}
 
 local maze
@@ -21,7 +15,7 @@ function flood_fill.init()
 end
 
 function flood_fill.execute()
-    current_row, current_col = get_current_row_and_column()
+    current_row, current_col = position.get_current_row_and_column()
 
     if not maze.get_cell(current_row, current_col).visited then
 

@@ -1,10 +1,17 @@
 -- Global variables
-race_management = require "race_management"
+distance = require "distance"
+maze_data = require "maze_data"
 move = require "move"
 distance = require "distance"
 calibrate = require "calibrate"
+floor_detector = require "floor_detector"
+path = require "path"
 position = require "position"
 proximity = require "proximity"
+queue = require "Queue"
+race_management = require "race_management"
+stopwatch = require "stopwatch"
+require "utils"
 
 local maze_data
 local available_algorithms = {DEPTH_FIRST = "depth_first", BREADTH_FIRST = "breadth_first",  FLOOD_FILL = "flood_fill", RANDOM_EXPLORE = "random_explore"}
@@ -35,7 +42,7 @@ function step()
 	if race == race_states.RUN then
 		if not is_moving then
 			if remaining_moves == 0 then
-				move.move.set_slow_velocity() -- set default velocity to slow after a list of movements is done
+				move.set_slow_velocity() -- set default velocity to slow after a list of movements is done
 				algorithm.execute()
 			end
 		end
@@ -80,7 +87,7 @@ end
 
 function load_fast_path()
 	move.set_fast_velocity()
-	local movements = calculate_path_movements(final_path)
+	local movements = path.calculate_path_movements(final_path)
 	for _, movement in ipairs(movements) do
 		move.move(movement.movement, movement.direction, movement.delta)
 	end

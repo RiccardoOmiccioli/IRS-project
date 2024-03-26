@@ -1,7 +1,3 @@
-floor_detector = require "floor_detector"
-stopwatch = require "stopwatch"
-proximity = require "proximity"
-
 local race_management = {}
 
 PENALTY_SEC = 3 -- seconds of penalty
