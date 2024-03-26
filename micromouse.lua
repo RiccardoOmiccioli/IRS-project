@@ -66,7 +66,7 @@ function reset()
 	log("RESET")
 	init_robot()
 	race_management.init()
-	reset_position()
+	position.reset_position()
 	race = race_states.STOP
 	load_fast_path()
 end
